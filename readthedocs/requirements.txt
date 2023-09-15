@@ -31,3 +31,5 @@ spacy-loggers==1.0.5
 SQLAlchemy==2.0.20
 SQLAlchemy-Utils==0.41.1
 urllib3==1.26.16
+
+
