@@ -1,0 +1,60 @@
+,data
+0,"Image Segmentation TutorialEVA DB
+(continued from previous page)
+1 [<PIL.Image.Image image mode=L size=960x540 at...
+2 [<PIL.Image.Image image mode=L size=960x540 at...
+3 [<PIL.Image.Image image mode=L size=960x540 at...
+12.7 Visualizing output of the Image Segmenter on the video
+import numpy as np
+from PIL import Image
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import cv2
+defget_color_mapping(all_labels):
+unique_labels = set(label forlabels inall_labels forlabel inlabels)
+num_colors = len(unique_labels)
+colormap = plt.colormaps[""tab20""]
+colors = [colormap(i % 20)[:3] foriinrange(num_colors)]
+colors = [tuple(int(c * 255) forcincolor) forcolor incolors]
+color_mapping = {label: color forlabel, color inzip(unique_labels, colors)}
+return color_mapping
+defannotate_single_frame(frame, segments, labels, color_mapping):
+overlay = np.zeros_like(frame)
+# Overlay segments
+formask, label inzip(segments, labels):
+mask_np = np.array(mask).astype(bool)
+overlay[mask_np] = color_mapping[label]
+# Combine original frame with overlay
+new_frame = Image.blend(
+Image.fromarray(frame.astype(np.uint8)),
+Image.fromarray(overlay.astype(np.uint8)),
+alpha=0.5,
+)
+returnnew_frame
+defannotate_video(segmentations, input_video_path, output_video_path, model_name =
+˓→'hfsegmentation '):
+all_segments = segmentations[f '{model_name }.mask ']
+all_labels = segmentations[f '{model_name }.label ']
+color_mapping = get_color_mapping(all_labels)
+vcap = cv2.VideoCapture(input_video_path)
+width = int(vcap.get(3))
+height = int(vcap.get(4))
+fps = vcap.get(5)
+(continues on next page)
+12.7. Visualizing output of the Image Segmenter on the video 41EVA DB
+(continued from previous page)
+fourcc = cv2.VideoWriter_fourcc( 'm','p','4','v')#codec
+video=cv2.VideoWriter(output_video_path, fourcc, fps, (width,height))
+frame_id = 0
+ret, frame = vcap.read()
+whileret andframe_id < len(all_segments):
+segments = all_segments[frame_id]
+labels = all_labels[frame_id]
+new_frame = annotate_single_frame(frame, segments, labels, color_mapping)
+video.write(np.array(new_frame))
+ifframe_id % 5 == 0:
+legend_patches = [mpatches.Patch(color=np.array(color_mapping[label])/255,␣
+˓→label=label) forlabel inset(labels)]
+plt.imshow(new_frame)
+plt.legend(handles=legend_patches, bbox_to_anchor=(1.05, 1), loc= 'upper left
+˓→', borderaxespad=0.)"

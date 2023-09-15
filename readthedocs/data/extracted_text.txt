@@ -1,0 +1,2282 @@
+EVA DB
+EVA DB
+May 18, 2023OVERVIEW
+1 What is EVA? 3
+2 Key Features 5
+3 Next Steps 7
+4 Illustrative EVA Applications 9
+4.1 Traffic Analysis Application using Object Detection Model . . . . . . . . . . . . . . . . . . . . . . 9
+4.2 MNIST Digit Recognition using Image Classification Model . . . . . . . . . . . . . . . . . . . . . 9
+4.3 Movie Analysis Application using Face Detection + Emotion Classification Models . . . . . . . . . 9
+5 Community 11
+6 EVA AI-Relational Database System 13
+6.1 Usability and Application Maintainability . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+6.2 GPU Cost and Human Time . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+7 Getting Started 15
+7.1 Part 1: Install EVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+7.2 Launch EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+7.3 Part 2: Start a Jupyter Notebook Client . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+7.4 Part 3: Register an user-defined function (UDF) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+7.5 Part 5: Start a Command Line Client . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+8 Start EVA Server 19
+8.1 Launch EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+9 MNIST TUTORIAL 21
+9.1 Start EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+9.2 Downloading the videos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+9.3 Upload the video for analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+9.4 Visualize Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+9.5 Create an user-defined function (UDF) for analyzing the frames . . . . . . . . . . . . . . . . . . . . 22
+9.6 Run the Image Classification UDF on video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+9.7 Visualize output of query on the video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+10 Object Detection Tutorial 25
+10.1 Start EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+10.2 Download the Videos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+10.3 Load the surveillance videos for analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+10.4 Visualize Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+i10.5 Register YOLO Object Detector an an User-Defined Function (UDF) in EVA . . . . . . . . . . . . . 26
+10.6 Run Object Detector on the video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+10.7 Visualizing output of the Object Detector on the video . . . . . . . . . . . . . . . . . . . . . . . . . 29
+10.8 Dropping an User-Defined Function (UDF) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+11 EMOTION ANALYSIS 33
+11.1 Start EVA Server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+11.2 Video Files . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+11.3 Adding the video file to EVADB for analysis . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+11.4 Visualize Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+11.5 Create an user-defined function(UDF) for analyzing the frames . . . . . . . . . . . . . . . . . . . . . 34
+11.6 Run the Face Detection UDF on video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+11.7 Run the Emotion Detection UDF on the outputs of the Face Detection UDF . . . . . . . . . . . . . . 35
+12 Image Segmentation Tutorial 39
+12.1 Start EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+12.2 Download the Videos . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+12.3 Load sample video from DAVIS dataset for analysis . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+12.4 Visualize Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+12.5 Register Hugging Face Segmentation Model as an User-Defined Function (UDF) in EVA . . . . . . . 40
+12.6 Run Image Segmentation on the video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+12.7 Visualizing output of the Image Segmenter on the video . . . . . . . . . . . . . . . . . . . . . . . . 41
+12.8 Dropping an User-Defined Function (UDF) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+13 ChatGPT Tutorial 45
+13.1 Start EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+13.2 Download News Video and ChatGPT UDF . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+13.3 Visualize Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+13.4 Set your OpenAI API key here . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+13.5 Run the ChatGPT UDF . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+13.6 Check if it works on an SNL Video . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+14 Similarity search for motif mining 51
+14.1 Start EVA server . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+14.2 Download reddit dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 51
+14.3 Load all images into evadb . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+14.4 Register a SIFT FeatureExtractor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+14.5 Image-level similarity search pipeline. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 53
+14.6 Object-level similarity search pipeline. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+14.7 Combine the scores from image level and object level similarity to show similar images . . . . . . . 56
+15 EVA Query Language Reference 57
+15.1 LOAD . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+15.2 SELECT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+15.3 EXPLAIN . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+15.4 SHOW . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+15.5 CREATE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+15.6 DROP . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+15.7 INSERT . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+15.8 DELETE . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 61
+15.9 RENAME . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 61
+16 User-Defined Functions 63
+16.1 Part 1: Writing a custom UDF . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+16.2 Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+ii16.3 Forward . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+16.4 Part 2: Registering and using the UDF in EVA Queries . . . . . . . . . . . . . . . . . . . . . . . . . 65
+16.5 Ultralytics Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 66
+16.6 HuggingFace Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 67
+16.7 OpenAI Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 68
+16.8 User-Defined Functions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 68
+17 IO Descriptors 73
+17.1 NumpyArray . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+17.2 Parameters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+17.3 PyTorchTensor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 73
+17.4 PandasDataframe . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 74
+18 Configure GPU 75
+19 EVA Internals 77
+19.1 Path of a Query . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 77
+19.2 Topics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 78
+20 Contributing 79
+20.1 Setting up the Development Environment . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 79
+20.2 Testing . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 79
+20.3 Submitting a Contribution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+20.4 Code Style . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+20.5 Debugging . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 80
+20.6 Architecture Diagram . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 82
+20.7 Troubleshooting . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 82
+21 Debugging 83
+21.1 Setup debugger . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 83
+21.2 Alternative: Manually Setup Debugger for EVA . . . . . . . . . . . . . . . . . . . . . . . . . . . . 84
+22 Extending EVA 87
+22.1 Command Handler . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 87
+22.2 1. Parser . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 87
+22.3 2. Statement To Plan Converter . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 88
+22.4 3. Plan Generator . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 89
+22.5 4. Plan Executor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 90
+22.6 Additional Notes . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 91
+23 EVA Release Guide 93
+23.1 Part 1: Before You Start . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93
+23.2 Part 2: Release Steps . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 93
+24 Packaging 97
+24.1 Models . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 97
+24.2 Datasets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 97
+iiiivEVA DB
+Database system for building simpler and faster AI-powered applications.
+OVERVIEW 1EVA DB
+2 OVERVIEWCHAPTER
+ONE
+WHAT IS EVA?
+EVAisan open-sourceAI-relationaldatabasewithfirst-classsupportfordeeplearningmodels . Itaimstosupport
+AI-powereddatabaseapplicationsthatoperateonbothstructured(tables)andunstructureddata(videos,text,podcasts,
+PDFs, etc.) with deep learning models.
+EVA accelerates AI pipelines using a collection of optimizations inspired by relational database systems including
+function caching, sampling, and cost-based operator reordering. It comes with a wide range of models for analyzing
+unstructured data including image classification, object detection, OCR, face detection, etc. It is fully implemented in
+Python, and licensed under the Apache license.
+EVA supports a AI-oriented query language for analysing unstructured data. Here are some illustrative applications:
+•Using ChatGPT to ask questions based on videos
+•Analysing traffic flow at an intersection
+•Examining the emotion palette of actors in a movie
+•Finding similar images on Reddit
+•Classifying images based on their content
+•Image Segmentation using Hugging Face
+•Recognizing license plates
+•Analysing toxicity of social media memes
+IfyouarewonderingwhyyoumightneedaAI-Relationaldatabasesystem,startwithpageonAI-RelationalDatabase
+Systems. It describes how EVA lets users easily make use of deep learning models and how they can reduce money
+spent on inference on large image or video datasets.
+The Getting Started page shows how you can use EVA for different computer vision tasks, and how you can easily
+extend EVA to support your custom deep learning model in the form of user-defined functions.
+TheUserGuidessectioncontainsJupyterNotebooksthatdemonstratehowtousevariousfeaturesofEVA.Eachnote-
+book includes a link to Google Colab, where you can run the code by yourself.
+3EVA DB
+4 Chapter 1. What is EVA?CHAPTER
+TWO
+KEY FEATURES
+1. With EVA, you can easily combine SQL and deep learning models to build next-generation database ap-
+plications . EVA treats deep learning models as functions similar to traditional SQL functions like SUM().
+2. EVA is extensible by design . You can write an user-defined function (UDF) that wraps around your custom
+deeplearningmodel. Infact,allthebuilt-inmodelsthatareincludedinEVAarewrittenasuser-definedfunctions.
+3. EVAcomeswithacollectionof built-insampling,caching,andfilteringoptimizations inspiredbyrelational
+database systems. These optimizations help speed up queries on large datasets and save money spent on
+model inference .
+5EVA DB
+6 Chapter 2. Key FeaturesCHAPTER
+THREE
+NEXT STEPS
+Getting Started A step-by-step guide to installing EVA and running queries
+Query Language List of all the query commands supported by EVA
+User Defined Functions A step-by-step tour of registering a user defined function that wraps around a
+custom deep learning model
+7EVA DB
+8 Chapter 3. Next StepsCHAPTER
+FOUR
+ILLUSTRATIVE EVA APPLICATIONS
+4.1 Traffic Analysis Application using Object Detection Model
+4.2 MNIST Digit Recognition using Image Classification Model
+4.3 MovieAnalysisApplicationusingFaceDetection+EmotionClas-
+sification Models
+9EVA DB
+10 Chapter 4. Illustrative EVA ApplicationsCHAPTER
+FIVE
+COMMUNITY
+Join the EVA community on Slack to ask questions and to share your ideas for improving EVA.
+11EVA DB
+12 Chapter 5. CommunityCHAPTER
+SIX
+EVA AI-RELATIONAL DATABASE SYSTEM
+Over the last decade, deep learning models have radically changed the world of computer vision and natural language
+processing. Theyareaccurateonavarietyoftasksrangingfromimageclassificationtoquestionanswering. However,
+there are two challenges that prevent a lot of users from benefiting from these models.
+6.1 Usability and Application Maintainability
+To use a vision or language model, the user must do a lot of imperative programming across low-level libraries, like
+OpenCV, PyTorch, and Hugging Face. This is a tedious process that often leads to a complex program or Jupyter
+Notebook that glues together these libraries to accomplish the given task. This programming complexity prevents a
+lot of people who are experts in other domains from benefiting from these models .
+Historically,databasesystemshavebeensuccessfulbecausethe querylanguageissimpleenough initsbasicstructure
+thatuserswithoutpriorexperienceareabletolearnausablesubsetofthelanguageontheirfirstsitting. EVAsupports
+a declarative SQL-like query language, called EVAQL, that is designed to make it easier for users to leverage these
+models. Withthisquerylanguage,theusermay composemultiplemodelsinasinglequery toaccomplishcomplicated
+tasks with minimal programming .
+Hereisaillustrativequerythatexaminestheemotionsofactorsinamoviebyleveragingmultipledeeplearningmodels
+that take care of detecting faces and analyzing the emotions of the detected bounding boxes:
+SELECTid, bbox, EmotionDetector(Crop( data, bbox))
+FROMInterstellar
+JOIN LATERAL UNNEST (FaceDetector( data))ASFace(bbox, conf)
+WHEREid < 15;
+By using a declarative language, the complexity of the program or Jupyter Notebook is significantly reduced. This in
+turn leads to more maintainable code that allows users to build on top of each other’s queries.
+6.2 GPU Cost and Human Time
+From a cost standpoint, it is very expensive to run these deep learning models on large image or video datasets. For
+example,thestate-of-the-artobjectdetectionmodeltakesmultipleGPU-decadestoprocessjustayear’sworthofvideos
+from a single traffic monitoring camera. Besides the money spent on hardware, this also increases the time that the
+user spends waiting for the model inference process to finish.
+EVAautomatically optimizesthequeriesto reduceinferencecostandqueryexecutiontime usingitsCascades-style
+query optimizer. EVA’s optimizer is tailored for video analytics. The Cascades-style extensible query optimization
+frameworkhasworkedverywellforseveraldecadesinSQLdatabasesystems. Queryoptimizationisoneofthesigna-
+turecomponentsofdatabasesystems—thebridgethatconnectsthedeclarativequerylanguagetoefficientexecution.
+13EVA DB
+14 Chapter 6. EVA AI-Relational Database SystemCHAPTER
+SEVEN
+GETTING STARTED
+7.1 Part 1: Install EVA
+EVA supports Python (versions >= 3.7). To install EVA, we recommend using the pip package manager:
+pip install evadb
+7.2 Launch EVA server
+EVA is based on a client-server architecture. To launch the EVA server, run the following command on the terminal:
+eva_server &
+7.3 Part 2: Start a Jupyter Notebook Client
+Here is an illustrative Jupyter notebook focusing on MNIST image classification using EVA. The notebook works on
+Google Colab.
+7.3.1 Connect to the EVA server
+To connect to the EVA server in the notebook, use the following Python code:
+# allow nested asyncio calls for client to connect with server
+import nest_asyncio
+nest_asyncio.apply()
+from eva.server.db_api import connect
+# hostname and port of the server where EVA is running
+connection = connect(host = '0.0.0.0 ', port = 8803)
+# cursor allows the notebook client to send queries to the server
+cursor = connection.cursor()
+15EVA DB
+7.3.2 Load video for analysis
+Download the MNIST video for analysis.
+!wget -nc https://www.dropbox.com/s/yxljxz6zxoqu54v/mnist.mp4
+Use the LOAD statement is used to load a video onto a table in EVA server.
+cursor.execute( 'LOAD VIDEO "mnist.mp4" INTO MNISTVideoTable; ')
+response = cursor.fetch_all()
+print(response)
+7.4 Part 3: Register an user-defined function (UDF)
+User-definedfunctionsallowustocombineSQLwithdeeplearningmodels. Thesefunctionswraparounddeeplearn-
+ing models.
+Download the user-defined function for classifying MNIST images.
+!wget -nc https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/apps/
+˓→mnist/eva_mnist_udf.py
+cursor.execute("""CREATE UDF IF NOT EXISTS MnistCNN
+INPUT (data NDARRAY (3, 28, 28))
+OUTPUT (label TEXT(2))
+TYPE Classification
+IMPL 'eva_mnist_udf.py ';
+""")
+response = cursor.fetch_all()
+print(response)
+7.4.1 Run a query using the newly registered UDF!
+cursor.execute("""SELECT data, MnistCNN(data).label
+FROM MNISTVideoTable
+WHERE id = 30;""")
+response = cursor.fetch_all()
+7.4.2 Visualize the output
+The output of the query is visualized in the notebook.
+16 Chapter 7. Getting StartedEVA DB
+7.5 Part 5: Start a Command Line Client
+Besides the notebook interface, EVA also exports a command line interface for querying the server. This interface
+allows for quick querying from the terminal:
+>>> eva_client
+eva= # LOAD VIDEO "mnist.mp4" INTO MNISTVid;
+@status: ResponseStatus.SUCCESS
+@batch:
+0 Video successfully added at location: mnist.p4
+@query_time: 0.045
+eva= # SELECT id, data FROM MNISTVid WHERE id < 1000;
+@status: ResponseStatus.SUCCESS
+@batch:
+mnistvid.id mnistvid.data
+0 0 [[[ 0 2 0] \n[0 0 0] \n...
+1 1 [[[ 2 2 0] \n[1 1 0] \n...
+2 2 [[[ 2 2 0] \n[1 2 2] \n...
+.. ...
+997 997 [[[ 0 2 0] \n[0 0 0] \n...
+998 998 [[[ 0 2 0] \n[0 0 0] \n...
+999 999 [[[ 2 2 0] \n[1 1 0] \n...
+[1000 rows x 2 columns]
+@query_time: 0.216
+eva= # exit
+7.5. Part 5: Start a Command Line Client 17EVA DB
+18 Chapter 7. Getting StartedCHAPTER
+EIGHT
+START EVA SERVER
+8.1 Launch EVA server
+We use this notebook for launching the EVA server.
+## Install EVA package if needed
+%pipinstall "evadb" --quiet
+import os
+import time
+from psutil import process_iter
+from signal import SIGTERM
+import re
+import itertools
+defshell(command):
+print(command)
+os.system(command)
+defstop_eva_server():
+forproc inprocess_iter():
+ifproc.name() == "eva_server":
+proc.send_signal(SIGTERM)
+defis_eva_server_running():
+forproc inprocess_iter():
+ifproc.name() == "eva_server":
+return True
+return False
+deflaunch_eva_server():
+# Stop EVA server if it is running
+# stop_eva_server()
+os.environ[ 'GPU_DEVICES '] = '0'
+# Start EVA server
+shell("nohup eva_server > eva.log 2>&1 &")
+last_few_lines_count = 3
+(continues on next page)
+19EVA DB
+(continued from previous page)
+try:
+withopen( 'eva.log ','r')asf:
+forlines initertools.zip_longest(*[f]*last_few_lines_count):
+print(lines)
+exceptFileNotFoundError:
+pass
+# Wait for server to start
+time.sleep(10)
+defconnect_to_server():
+from eva.server.db_api import connect
+import nest_asyncio
+nest_asyncio.apply()
+status = is_eva_server_running()
+ifstatus == False:
+launch_eva_server()
+# Connect client with server
+connection = connect(host = '127.0.0.1 ', port = 8803)
+cursor = connection.cursor()
+returncursor
+# Launch server
+launch_eva_server()
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server --port 8803 > eva.log 2>&1 &
+20 Chapter 8. Start EVA ServerCHAPTER
+NINE
+MNIST TUTORIAL
+9.1 Start EVA server
+We are reusing the start server notebook for launching the EVA server.
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+File ‘00-start-eva-server.ipynb’ already there; not retrieving.
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server > eva.log 2>&1 &
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+9.2 Downloading the videos
+# Getting MNIST as a video
+!wget -nc https://www.dropbox.com/s/yxljxz6zxoqu54v/mnist.mp4
+# Getting a udf
+!wget -nc https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/apps/
+˓→mnist/eva_mnist_udf.py
+File ‘mnist.mp4’ already there; not retrieving.
+File ‘eva_mnist_udf.py’ already there; not retrieving.
+21EVA DB
+9.3 Upload the video for analysis
+cursor.execute( 'DROP TABLE IF EXISTS MNISTVid ')
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute("LOAD VIDEO 'mnist.mp4 'INTO MNISTVid")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded VIDEO: 1
+9.4 Visualize Video
+from IPython.display import Video
+Video("mnist.mp4", embed= True)
+<IPython.core.display.Video object>
+9.5 Create an user-defined function (UDF) for analyzing the frames
+cursor.execute("""CREATE UDF IF NOT EXISTS
+MnistCNN
+INPUT (data NDARRAY (3, 28, 28))
+OUTPUT (label TEXT(2))
+TYPE Classification
+IMPL 'eva_mnist_udf.py '
+""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF MnistCNN successfully added to the database.
+9.6 Run the Image Classification UDF on video
+cursor.execute("""SELECT data, MnistCNN(data).label
+FROM MNISTVid
+WHERE id = 30 OR id = 50 OR id = 70 OR id = 0 OR id = 140""")
+response = cursor.fetch_all()
+response.as_df()
+mnistvid.data mnistcnn.label
+0 [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], ... 6
+(continues on next page)
+22 Chapter 9. MNIST TUTORIALEVA DB
+(continued from previous page)
+1 [[[2, 2, 2], [2, 2, 2], [2, 2, 2], [2, 2, 2], ... 2
+2 [[[13, 13, 13], [2, 2, 2], [2, 2, 2], [13, 13,... 3
+3 [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], ... 7
+4 [[[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], ... 5
+9.7 Visualize output of query on the video
+# !pip install matplotlib
+import matplotlib.pyplot as plt
+import numpy as np
+# create figure (fig), and array of axes (ax)
+fig, ax = plt.subplots(nrows=1, ncols=5, figsize=[6,8])
+df = response.batch.frames
+foraxi inax.flat:
+idx = np.random.randint(len(df))
+img = df[ 'mnistvid.data '].iloc[idx]
+label = df[ 'mnistcnn.label '].iloc[idx]
+axi.imshow(img)
+axi.set_title(f 'label: {label }')
+plt.show()
+../_readthedocs/jupyter_execute/01-mnist_15_0.png
+9.7. Visualize output of query on the video 23EVA DB
+24 Chapter 9. MNIST TUTORIALCHAPTER
+TEN
+OBJECT DETECTION TUTORIAL
+10.1 Start EVA server
+We are reusing the start server notebook for launching the EVA server.
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+File ‘00-start-eva-server.ipynb’ already there; not retrieving.
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server > eva.log 2>&1 &
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+10.2 Download the Videos
+# Getting the video files
+!wget -nc "https://www.dropbox.com/s/k00wge9exwkfxz6/ua_detrac.mp4?raw=1" -O ua_detrac.
+˓→mp4
+File ‘ua_detrac.mp4’ already there; not retrieving.
+25EVA DB
+10.3 Load the surveillance videos for analysis
+10.3.1 We use regular expression to load all the videos into the table
+cursor.execute( 'DROP TABLE IF EXISTS ObjectDetectionVideos ')
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute( 'LOAD VIDEO "ua_detrac.mp4" INTO ObjectDetectionVideos; ')
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded VIDEO: 1
+10.4 Visualize Video
+from IPython.display import Video
+Video("ua_detrac.mp4", embed= True)
+<IPython.core.display.Video object>
+10.5 Register YOLO Object Detector an an User-Defined Function
+(UDF) in EVA
+cursor.execute("""
+CREATE UDF IF NOT EXISTS Yolo
+TYPE ultralytics
+'model ' 'yolov8m.pt ';
+""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF Yolo already exists, nothing added.
+26 Chapter 10. Object Detection TutorialEVA DB
+10.6 Run Object Detector on the video
+cursor.execute("""SELECT id, Yolo(data)
+FROM ObjectDetectionVideos
+WHERE id < 20""")
+response = cursor.fetch_all()
+response.as_df()
+objectdetectionvideos.id \
+0 0
+1 1
+2 2
+3 3
+4 4
+5 5
+6 6
+7 7
+8 8
+9 9
+10 10
+11 11
+12 12
+13 13
+14 14
+15 15
+16 16
+17 17
+18 18
+19 19
+yolo.labels \
+0 [car, car, car, car, car, car, person, car, ca...
+1 [car, car, car, car, car, car, car, car, car, ...
+2 [car, car, car, car, car, car, car, person, ca...
+3 [car, car, car, car, car, car, car, car, car, ...
+4 [car, car, car, car, car, car, car, car, car, ...
+5 [car, car, car, car, car, car, person, car, ca...
+6 [car, car, car, car, car, car, car, person, ca...
+7 [car, car, car, car, car, car, car, car, car, ...
+8 [car, car, car, car, car, car, person, car, ca...
+9 [car, car, car, car, car, car, car, person, ca...
+10 [car, car, car, car, car, car, car, person, ca...
+11 [car, car, car, car, car, car, person, car, ca...
+12 [car, car, car, car, car, car, car, person, ca...
+13 [car, car, car, car, car, car, person, car, ca...
+14 [car, car, car, car, car, car, person, car, ca...
+15 [car, car, car, car, car, car, person, car, ca...
+16 [car, car, car, car, car, car, car, person, ca...
+17 [car, car, car, car, car, car, car, person, ca...
+18 [car, car, car, car, car, car, car, person, mo...
+19 [car, car, car, car, car, person, car, car, ca...
+(continues on next page)
+10.6. Run Object Detector on the video 27EVA DB
+(continued from previous page)
+yolo.bboxes \
+0 [[829.0, 277.0, 960.0, 360.0], [615.0, 216.0, ...
+1 [[832.0, 278.0, 960.0, 361.0], [616.0, 216.0, ...
+2 [[836.0, 279.0, 960.0, 362.0], [618.0, 216.0, ...
+3 [[839.0, 280.0, 960.0, 363.0], [619.0, 217.0, ...
+4 [[843.0, 281.0, 960.0, 364.0], [621.0, 218.0, ...
+5 [[847.0, 282.0, 960.0, 363.0], [623.0, 218.0, ...
+6 [[851.0, 283.0, 959.0, 360.0], [625.0, 219.0, ...
+7 [[855.0, 284.0, 960.0, 357.0], [626.0, 220.0, ...
+8 [[859.0, 285.0, 960.0, 357.0], [628.0, 221.0, ...
+9 [[863.0, 286.0, 960.0, 357.0], [630.0, 222.0, ...
+10 [[632.0, 223.0, 744.0, 284.0], [867.0, 287.0, ...
+11 [[871.0, 289.0, 960.0, 356.0], [634.0, 223.0, ...
+12 [[636.0, 223.0, 750.0, 287.0], [875.0, 290.0, ...
+13 [[171.0, 409.0, 291.0, 539.0], [637.0, 224.0, ...
+14 [[174.0, 405.0, 294.0, 538.0], [885.0, 291.0, ...
+15 [[888.0, 293.0, 960.0, 355.0], [177.0, 400.0, ...
+16 [[893.0, 293.0, 960.0, 355.0], [180.0, 396.0, ...
+17 [[182.0, 392.0, 296.0, 519.0], [897.0, 294.0, ...
+18 [[901.0, 295.0, 960.0, 356.0], [647.0, 225.0, ...
+19 [[648.0, 226.0, 770.0, 293.0], [906.0, 297.0, ...
+yolo.scores
+0 [0.91, 0.86, 0.85, 0.83, 0.76, 0.73, 0.72, 0.7...
+1 [0.92, 0.85, 0.84, 0.83, 0.78, 0.76, 0.76, 0.7...
+2 [0.92, 0.84, 0.84, 0.82, 0.81, 0.75, 0.73, 0.7...
+3 [0.91, 0.84, 0.82, 0.8, 0.8, 0.75, 0.74, 0.72,...
+4 [0.9, 0.85, 0.83, 0.8, 0.76, 0.73, 0.72, 0.72,...
+5 [0.89, 0.86, 0.84, 0.8, 0.78, 0.74, 0.72, 0.72...
+6 [0.89, 0.87, 0.85, 0.81, 0.79, 0.73, 0.72, 0.7...
+7 [0.9, 0.87, 0.84, 0.83, 0.83, 0.79, 0.73, 0.67...
+8 [0.89, 0.88, 0.83, 0.82, 0.79, 0.71, 0.68, 0.6...
+9 [0.88, 0.87, 0.84, 0.82, 0.8, 0.75, 0.74, 0.74...
+10 [0.88, 0.88, 0.85, 0.82, 0.8, 0.79, 0.76, 0.71...
+11 [0.9, 0.9, 0.85, 0.8, 0.79, 0.77, 0.69, 0.68, ...
+12 [0.9, 0.88, 0.83, 0.81, 0.78, 0.78, 0.78, 0.67...
+13 [0.9, 0.89, 0.89, 0.83, 0.81, 0.81, 0.72, 0.71...
+14 [0.9, 0.89, 0.88, 0.84, 0.82, 0.81, 0.75, 0.72...
+15 [0.89, 0.88, 0.87, 0.84, 0.82, 0.78, 0.76, 0.7...
+16 [0.88, 0.88, 0.87, 0.82, 0.81, 0.76, 0.75, 0.7...
+17 [0.9, 0.89, 0.87, 0.83, 0.82, 0.78, 0.72, 0.69...
+18 [0.88, 0.88, 0.83, 0.82, 0.8, 0.78, 0.75, 0.7,...
+19 [0.89, 0.87, 0.81, 0.8, 0.78, 0.77, 0.73, 0.72...
+28 Chapter 10. Object Detection TutorialEVA DB
+10.7 Visualizing output of the Object Detector on the video
+import cv2
+from pprint import pprint
+from matplotlib import pyplot asplt
+defannotate_video(detections, input_video_path, output_video_path):
+color1=(207, 248, 64)
+color2=(255, 49, 49)
+thickness=4
+vcap = cv2.VideoCapture(input_video_path)
+width = int(vcap.get(3))
+height = int(vcap.get(4))
+fps = vcap.get(5)
+fourcc = cv2.VideoWriter_fourcc( 'm','p','4','v')#codec
+video=cv2.VideoWriter(output_video_path, fourcc, fps, (width,height))
+frame_id = 0
+# Capture frame-by-frame
+# ret = 1 if the video is captured; frame is the image
+ret, frame = vcap.read()
+whileret:
+df = detections
+df = df[[ 'yolo.bboxes ','yolo.labels ']][df.index == frame_id]
+ifdf.size:
+dfLst = df.values.tolist()
+forbbox, label inzip(dfLst[0][0], dfLst[0][1]):
+x1, y1, x2, y2 = bbox
+x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+# object bbox
+frame=cv2.rectangle(frame, (x1, y1), (x2, y2), color1, thickness)
+# object label
+cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9,␣
+˓→color1, thickness)
+# frame label
+cv2.putText(frame, 'Frame ID: '+ str(frame_id), (700, 500), cv2.FONT_
+˓→HERSHEY_SIMPLEX, 1.2, color2, thickness)
+video.write(frame)
+# Stop after twenty frames (id < 20 in previous query)
+ifframe_id == 20:
+break
+# Show every fifth frame
+ifframe_id % 5 == 0:
+plt.imshow(frame)
+plt.show()
+frame_id+=1
+(continues on next page)
+10.7. Visualizing output of the Object Detector on the video 29EVA DB
+(continued from previous page)
+ret, frame = vcap.read()
+video.release()
+vcap.release()
+from ipywidgets import Video, Image
+input_path = 'ua_detrac.mp4 '
+output_path = 'video.mp4 '
+dataframe = response.as_df()
+annotate_video(dataframe, input_path, output_path)
+Video.from_file(output_path)
+../_readthedocs/jupyter_execute/02-object-detection_17_0.png
+../_readthedocs/jupyter_execute/02-object-detection_17_1.png
+../_readthedocs/jupyter_execute/02-object-detection_17_2.png
+../_readthedocs/jupyter_execute/02-object-detection_17_3.png
+Video(value=b '\x00\x00\x00\x1cftypisom\x00\x00\x02\x00isomiso2mp41\x00\x00\x00\x08free\
+˓→x00\tI\x95mdat\x00\x00\...
+30 Chapter 10. Object Detection TutorialEVA DB
+10.8 Dropping an User-Defined Function (UDF)
+cursor.execute("DROP UDF IF EXISTS Yolo;")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF Yolo successfully dropped
+10.8. Dropping an User-Defined Function (UDF) 31EVA DB
+32 Chapter 10. Object Detection TutorialCHAPTER
+ELEVEN
+EMOTION ANALYSIS
+11.1 Start EVA Server
+We are reusing the start server notebook for launching the EVA server
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+File ‘00-start-eva-server.ipynb’ already there; not retrieving.
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server > eva.log 2>&1 &
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+11.2 Video Files
+getting some video files to test
+# A video of a happy person
+!wget -nc "https://www.dropbox.com/s/gzfhwmib7u804zy/defhappy.mp4?raw=1" -O defhappy.mp4
+# Adding Emotion detection
+!wget -nc https://raw.githubusercontent.com/georgia-tech-db/eva/master/eva/udfs/emotion_
+˓→detector.py
+# Adding Face Detector
+!wget -nc https://raw.githubusercontent.com/georgia-tech-db/eva/master/eva/udfs/face_
+˓→detector.py(continues on next page)
+33EVA DB
+(continued from previous page)
+File ‘defhappy.mp4’ already there; not retrieving.
+File ‘emotion_detector.py’ already there; not retrieving.
+File ‘face_detector.py’ already there; not retrieving.
+11.3 Adding the video file to EVADB for analysis
+cursor.execute( 'DROP TABLE IF EXISTS HAPPY ')
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute( 'LOAD VIDEO "defhappy.mp4" INTO HAPPY ')
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded VIDEO: 1
+11.4 Visualize Video
+from IPython.display import Video
+Video("defhappy.mp4", height=450, width=800, embed= True)
+<IPython.core.display.Video object>
+11.5 Create an user-defined function(UDF) for analyzing the frames
+cursor.execute("""CREATE UDF IF NOT EXISTS EmotionDetector
+INPUT (frame NDARRAY UINT8(3, ANYDIM, ANYDIM))
+OUTPUT (labels NDARRAY STR(ANYDIM), scores NDARRAY FLOAT32(ANYDIM))
+TYPE Classification IMPL 'emotion_detector.py ';
+""")
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute("""CREATE UDF IF NOT EXISTS FaceDetector
+INPUT (frame NDARRAY UINT8(3, ANYDIM, ANYDIM))
+OUTPUT (bboxes NDARRAY FLOAT32(ANYDIM, 4),
+scores NDARRAY FLOAT32(ANYDIM))
+TYPE FaceDetection
+IMPL 'face_detector.py ';
+""")
+(continues on next page)
+34 Chapter 11. EMOTION ANALYSISEVA DB
+(continued from previous page)
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF FaceDetector successfully added to the dat...
+11.6 Run the Face Detection UDF on video
+cursor.execute("""SELECT id, FaceDetector(data)
+FROM HAPPY WHERE id<10""")
+response = cursor.fetch_all()
+response.as_df()
+happy.id facedetector.bboxes \
+0 0 [[502, 94, 762, 435], [238, 296, 325, 398]]
+1 1 [[501, 96, 763, 435]]
+2 2 [[504, 97, 766, 437]]
+3 3 [[498, 90, 776, 446]]
+4 4 [[496, 99, 767, 444]]
+5 5 [[499, 87, 777, 448], [236, 305, 324, 407]]
+6 6 [[500, 89, 778, 449]]
+7 7 [[501, 89, 781, 452]]
+8 8 [[503, 90, 783, 450]]
+9 9 [[508, 87, 786, 447]]
+facedetector.scores
+0 [0.99990165, 0.79820246]
+1 [0.999918]
+2 [0.9999138]
+3 [0.99996686]
+4 [0.9999982]
+5 [0.9999136, 0.8369736]
+6 [0.9999131]
+7 [0.9999124]
+8 [0.99994683]
+9 [0.999949]
+11.7 Run the Emotion Detection UDF on the outputs of the Face De-
+tection UDF
+cursor.execute("""SELECT id, bbox, EmotionDetector(Crop(data, bbox))
+FROM HAPPY JOIN LATERAL UNNEST(FaceDetector(data)) AS Face(bbox,␣
+˓→conf)
+WHERE id < 15;""")
+response = cursor.fetch_all()
+response.as_df()
+11.6. Run the Face Detection UDF on video 35EVA DB
+happy.id Face.bbox emotiondetector.labels \
+0 0 [502, 94, 762, 435] happy
+1 0 [238, 296, 325, 398] neutral
+2 1 [501, 96, 763, 435] happy
+3 2 [504, 97, 766, 437] happy
+4 3 [498, 90, 776, 446] happy
+5 4 [496, 99, 767, 444] happy
+6 5 [499, 87, 777, 448] happy
+7 5 [236, 305, 324, 407] neutral
+8 6 [500, 89, 778, 449] happy
+9 7 [501, 89, 781, 452] happy
+10 8 [503, 90, 783, 450] happy
+11 9 [508, 87, 786, 447] happy
+12 10 [505, 86, 788, 452] happy
+13 10 [235, 309, 322, 411] neutral
+14 11 [514, 85, 790, 454] happy
+15 12 [514, 86, 790, 454] happy
+16 13 [515, 87, 790, 454] happy
+17 14 [516, 86, 792, 455] happy
+emotiondetector.scores
+0 0.999642
+1 0.780949
+2 0.999644
+3 0.999668
+4 0.999654
+5 0.999649
+6 0.999710
+7 0.760779
+8 0.999671
+9 0.999671
+10 0.999689
+11 0.999691
+12 0.999729
+13 0.407872
+14 0.999745
+15 0.999729
+16 0.999718
+17 0.999739
+import cv2
+from pprint import pprint
+from matplotlib import pyplot asplt
+defannotate_video(detections, input_video_path, output_video_path):
+color1=(207, 248, 64)
+color2=(255, 49, 49)
+thickness=4
+vcap = cv2.VideoCapture(input_video_path)
+width = int(vcap.get(3))
+height = int(vcap.get(4))
+(continues on next page)
+36 Chapter 11. EMOTION ANALYSISEVA DB
+(continued from previous page)
+fps = vcap.get(5)
+fourcc = cv2.VideoWriter_fourcc( 'm','p','4','v')#codec
+video=cv2.VideoWriter(output_video_path, fourcc, fps, (width,height))
+frame_id = 0
+# Capture frame-by-frame
+# ret = 1 if the video is captured; frame is the image
+ret, frame = vcap.read()
+whileret:
+df = detections
+df = df[[ 'Face.bbox ','emotiondetector.labels ','emotiondetector.scores ']][df.
+˓→index == frame_id]
+ifdf.size:
+x1, y1, x2, y2 = df[ 'Face.bbox '].values[0]
+label = df[ 'emotiondetector.labels '].values[0]
+score = df[ 'emotiondetector.scores '].values[0]
+x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
+# object bbox
+frame=cv2.rectangle(frame, (x1, y1), (x2, y2), color1, thickness)
+# object label
+cv2.putText(frame, label, (x1, y1-10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, color1,
+˓→thickness)
+# object score
+cv2.putText(frame, str(round(score, 5)), (x1+120, y1-10), cv2.FONT_HERSHEY_
+˓→SIMPLEX, 0.9, color1, thickness)
+# frame label
+cv2.putText(frame, 'Frame ID: '+ str(frame_id), (700, 500), cv2.FONT_
+˓→HERSHEY_SIMPLEX, 1.2, color2, thickness)
+video.write(frame)
+# Show every fifth frame
+ifframe_id % 5 == 0:
+plt.imshow(frame)
+plt.show()
+frame_id+=1
+ret, frame = vcap.read()
+video.release()
+vcap.release()
+from ipywidgets import Video, Image
+input_path = 'defhappy.mp4 '
+output_path = 'video.mp4 '
+dataframe = response.as_df()
+annotate_video(dataframe, input_path, output_path)
+11.7. Run the Emotion Detection UDF on the outputs of the Face Detection UDF 37EVA DB
+../_readthedocs/jupyter_execute/03-emotion-analysis_17_0.png
+../_readthedocs/jupyter_execute/03-emotion-analysis_17_1.png
+../_readthedocs/jupyter_execute/03-emotion-analysis_17_2.png
+../_readthedocs/jupyter_execute/03-emotion-analysis_17_3.png
+38 Chapter 11. EMOTION ANALYSISCHAPTER
+TWELVE
+IMAGE SEGMENTATION TUTORIAL
+12.1 Start EVA server
+We are reusing the start server notebook for launching the EVA server.
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+File '00-start-eva-server.ipynb 'already there; not retrieving.
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server --port 8803 > eva.log 2>&1 &
+12.2 Download the Videos
+# # Getting the video files
+!wget -nc "https://www.dropbox.com/s/k00wge9exwkfxz6/ua_detrac.mp4?raw=1" -O ua_detrac.
+˓→mp4
+File 'ua_detrac.mp4 'already there; not retrieving.
+12.3 Load sample video from DAVIS dataset for analysis
+cursor.execute( 'DROP TABLE IF EXISTS VideoForSegmentation; ')
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute( 'LOAD VIDEO "ua_detrac.mp4" INTO VideoForSegmentation ')
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded VIDEO: 1
+39EVA DB
+12.4 Visualize Video
+from IPython.display import Video
+Video("ua_detrac.mp4", embed= True)
+<IPython.core.display.Video object>
+12.5 Register Hugging Face Segmentation Model as an User-Defined
+Function (UDF) in EVA
+### Using HuggingFace with EVA requires specifying the task
+### The task here is 'image-segmentation '
+### The model is 'facebook/detr-resnet-50-panoptic '
+cursor.execute("""CREATE UDF IF NOT EXISTS HFSegmentation
+TYPE HuggingFace
+'task ' 'image-segmentation '
+'model ' 'facebook/detr-resnet-50-panoptic '
+""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF HFSegmentation successfully added to the d...
+12.6 Run Image Segmentation on the video
+cursor.execute("""SELECT HFSegmentation(data)
+FROM VideoForSegmentation SAMPLE 5
+WHERE id < 20""")
+response = cursor.fetch_all()
+response.as_df()
+hfsegmentation.score
+0 [0.906596, 0.989519, 0.960914, 0.923789, 0.960... \
+1 [0.985118, 0.963139, 0.963819, 0.960939, 0.926...
+2 [0.989573, 0.900049, 0.966254, 0.96056, 0.9388...
+3 [0.913261, 0.949733, 0.943763, 0.98639, 0.9744...
+hfsegmentation.label
+0 [motorcycle, motorcycle, person, car, car, per... \
+1 [motorcycle, person, car, car, person, bridge,...
+2 [motorcycle, person, person, car, car, car, pe...
+3 [truck, person, car, car, car, car, car, perso...
+hfsegmentation.mask
+0 [<PIL.Image.Image image mode=L size=960x540 at...
+(continues on next page)
+40 Chapter 12. Image Segmentation TutorialEVA DB
+(continued from previous page)
+1 [<PIL.Image.Image image mode=L size=960x540 at...
+2 [<PIL.Image.Image image mode=L size=960x540 at...
+3 [<PIL.Image.Image image mode=L size=960x540 at...
+12.7 Visualizing output of the Image Segmenter on the video
+import numpy as np
+from PIL import Image
+import matplotlib.patches as mpatches
+import matplotlib.pyplot as plt
+import cv2
+defget_color_mapping(all_labels):
+unique_labels = set(label forlabels inall_labels forlabel inlabels)
+num_colors = len(unique_labels)
+colormap = plt.colormaps["tab20"]
+colors = [colormap(i % 20)[:3] foriinrange(num_colors)]
+colors = [tuple(int(c * 255) forcincolor) forcolor incolors]
+color_mapping = {label: color forlabel, color inzip(unique_labels, colors)}
+return color_mapping
+defannotate_single_frame(frame, segments, labels, color_mapping):
+overlay = np.zeros_like(frame)
+# Overlay segments
+formask, label inzip(segments, labels):
+mask_np = np.array(mask).astype(bool)
+overlay[mask_np] = color_mapping[label]
+# Combine original frame with overlay
+new_frame = Image.blend(
+Image.fromarray(frame.astype(np.uint8)),
+Image.fromarray(overlay.astype(np.uint8)),
+alpha=0.5,
+)
+returnnew_frame
+defannotate_video(segmentations, input_video_path, output_video_path, model_name =
+˓→'hfsegmentation '):
+all_segments = segmentations[f '{model_name }.mask ']
+all_labels = segmentations[f '{model_name }.label ']
+color_mapping = get_color_mapping(all_labels)
+vcap = cv2.VideoCapture(input_video_path)
+width = int(vcap.get(3))
+height = int(vcap.get(4))
+fps = vcap.get(5)
+(continues on next page)
+12.7. Visualizing output of the Image Segmenter on the video 41EVA DB
+(continued from previous page)
+fourcc = cv2.VideoWriter_fourcc( 'm','p','4','v')#codec
+video=cv2.VideoWriter(output_video_path, fourcc, fps, (width,height))
+frame_id = 0
+ret, frame = vcap.read()
+whileret andframe_id < len(all_segments):
+segments = all_segments[frame_id]
+labels = all_labels[frame_id]
+new_frame = annotate_single_frame(frame, segments, labels, color_mapping)
+video.write(np.array(new_frame))
+ifframe_id % 5 == 0:
+legend_patches = [mpatches.Patch(color=np.array(color_mapping[label])/255,␣
+˓→label=label) forlabel inset(labels)]
+plt.imshow(new_frame)
+plt.legend(handles=legend_patches, bbox_to_anchor=(1.05, 1), loc= 'upper left
+˓→', borderaxespad=0.)
+plt.axis( 'off')
+plt.tight_layout()
+plt.show()
+frame_id += 1
+ret, frame = vcap.read()
+video.release()
+vcap.release()
+from ipywidgets import Video
+input_path = 'ua_detrac.mp4 '
+output_path = 'video.mp4 '
+dataframe = response.as_df()
+annotate_video(dataframe, input_path, output_path)
+Video.from_file(output_path)
+../_readthedocs/jupyter_execute/07-object-segmentation-huggingface_16_0.png
+Video(value=b '\x00\x00\x00\x1cftypisom\x00\x00\x02\x00isomiso2mp41\x00\x00\x00\x08free\
+˓→x00\x01\x90Z... ')
+42 Chapter 12. Image Segmentation TutorialEVA DB
+12.8 Dropping an User-Defined Function (UDF)
+cursor.execute("DROP UDF HFSegmentation;")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF HFSegmentation successfully dropped
+12.8. Dropping an User-Defined Function (UDF) 43EVA DB
+44 Chapter 12. Image Segmentation TutorialCHAPTER
+THIRTEEN
+CHATGPT TUTORIAL
+13.1 Start EVA server
+We are reusing the start server notebook for launching the EVA server
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+File ‘00-start-eva-server.ipynb’ already there; not retrieving.
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+nohup eva_server > eva.log 2>&1 &
+[notice] A new release of pip is available: 23.0.1 -> 23.1.2
+[notice] To update, run: pip install --upgrade pip
+Note: you may need to restart the kernel to use updated packages.
+13.2 Download News Video and ChatGPT UDF
+# Download News Video
+!wget -nc "https://www.dropbox.com/s/rfm1kds2mv77pca/russia_ukraine.mp4?dl=0" -O russia_
+˓→ukraine.mp4
+# Download ChatGPT UDF if needed
+!wget -nc https://raw.githubusercontent.com/georgia-tech-db/eva/master/eva/udfs/chatgpt.
+˓→py -O chatgpt.py
+File ‘russia_ukraine.mp4’ already there; not retrieving.
+45EVA DB
+File ‘chatgpt.py’ already there; not retrieving.
+13.3 Visualize Video
+from IPython.display import Video
+Video("russia_ukraine.mp4", height=450, width=800, embed= True)
+<IPython.core.display.Video object>
+13.4 Set your OpenAI API key here
+from eva.configuration.configuration_manager import ConfigurationManager
+import os
+# Assuming that the key is stored as an environment variable
+open_ai_key = os.environ.get( 'OPENAI_KEY ')
+ConfigurationManager().update_value("third_party", "openai_api_key", open_ai_key)
+# Drop the UDF if it already exists
+drop_udf_query = f"DROP UDF IF EXISTS ChatGPT;"
+cursor.execute(drop_udf_query)
+response = cursor.fetch_all()
+response.as_df()
+# Register the ChatGPT UDF in EVA
+create_udf_query = f"""CREATE UDF ChatGPT
+IMPL 'chatgpt.py '"""
+cursor.execute(create_udf_query)
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF ChatGPT successfully added to the database.
+13.5 Run the ChatGPT UDF
+source/tutorials/chatgpt.png
+46 Chapter 13. ChatGPT TutorialEVA DB
+#load the video
+cursor.execute("LOAD VIDEO 'russia_ukraine.mp4 'INTO VIDEOS;")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded VIDEO: 1
+# Drop the Text Summarization UDF if needed
+cursor.execute("DROP UDF IF EXISTS SpeechRecognizer;")
+response = cursor.fetch_all()
+response.as_df()
+# Create a Text Summarization UDF using Hugging Face
+text_summarizer_udf_creation = """
+CREATE UDF SpeechRecognizer
+TYPE HuggingFace
+'task ' 'automatic-speech-recognition '
+'model ' 'openai/whisper-base ';
+"""
+cursor.execute(text_summarizer_udf_creation)
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF SpeechRecognizer successfully added to the...
+# Drop the table if needed
+cursor.execute("DROP TABLE IF EXISTS TEXT_SUMMARY;")
+response = cursor.fetch_all()
+response.as_df()
+# Create a materialized view of the text summarization output
+text_summarization_query = """
+CREATE MATERIALIZED VIEW
+TEXT_SUMMARY(text) AS
+SELECT SpeechRecognizer(audio) FROM VIDEOS;
+"""
+cursor.execute(text_summarization_query)
+response = cursor.fetch_all()
+response.as_df()
+Empty DataFrame
+Columns: []
+Index: []
+# Run ChatGPT over the Text Summary extracted by Whisper
+chatgpt_udf = """
+SELECT ChatGPT( 'Is this video summary related to Ukraine russia war ',text)
+FROM TEXT_SUMMARY;
+(continues on next page)
+13.5. Run the ChatGPT UDF 47EVA DB
+(continued from previous page)
+"""
+cursor.execute(chatgpt_udf)
+response = cursor.fetch_all()
+response.as_df()
+chatgpt.response
+0 No, this video summary is not related to the U...
+1 Yes, the video summary is related to the Ukrai...
+13.6 Check if it works on an SNL Video
+# Download Entertainment Video
+!wget -nc "https://www.dropbox.com/s/u66im8jw2s1dmuw/snl.mp4?dl=0" -O snl.mp4
+cursor.execute("DROP TABLE IF EXISTS SNL_VIDEO;")
+response = cursor.fetch_all()
+response.as_df()
+cursor.execute("LOAD VIDEO 'snl.mp4 'INTO SNL_VIDEO;")
+response = cursor.fetch_all()
+response.as_df()
+File ‘snl.mp4’ already there; not retrieving.
+0
+0 Number of loaded VIDEO: 1
+from IPython.display import Video
+Video("snl.mp4", height=450, width=800, embed= True)
+<IPython.core.display.Video object>
+# Drop the table if needed
+cursor.execute("DROP TABLE IF EXISTS SNL_TEXT_SUMMARY;")
+response = cursor.fetch_all()
+response.as_df()
+# Create a materialized view of the text summarization output
+text_summarization_query = """
+CREATE MATERIALIZED VIEW
+SNL_TEXT_SUMMARY(text) AS
+SELECT SpeechRecognizer(audio) FROM SNL_VIDEO;
+"""
+cursor.execute(text_summarization_query)
+response = cursor.fetch_all()
+response.as_df()
+48 Chapter 13. ChatGPT TutorialEVA DB
+Empty DataFrame
+Columns: []
+Index: []
+13.6.1 ChatGPT: Is this video summary related to Ukraine War?
+# Run ChatGPT over the Text Summary extracted by Whisper
+chatgpt_udf = """
+SELECT ChatGPT( 'Is this video summary related to Ukraine russia war ',text)
+FROM SNL_TEXT_SUMMARY;
+"""
+cursor.execute(chatgpt_udf)
+response = cursor.fetch_all()
+response.as_df()
+chatgpt.response
+0 No, this video summary is not related to the U...
+13.6.2 ChatGPT: Is this video summary related to a hospital?
+# Run ChatGPT over the Text Summary extracted by Whisper
+chatgpt_udf = """
+SELECT ChatGPT( 'Is this video summary related to a hospital ',text)
+FROM SNL_TEXT_SUMMARY;
+"""
+cursor.execute(chatgpt_udf)
+response = cursor.fetch_all()
+response.as_df()
+chatgpt.response
+0 Yes, the video summary is related to a hospita...
+13.6. Check if it works on an SNL Video 49EVA DB
+50 Chapter 13. ChatGPT TutorialCHAPTER
+FOURTEEN
+SIMILARITY SEARCH FOR MOTIF MINING
+Inthistutorial,wedemonstratehowtoutilizethesimilarityfunctionalitytodiscoverimageswithsimilarmotifsfroma
+collectionofRedditimages. Weemploytheclassic SIFTfeaturetoidentifyimageswithastrikinglysimilarappearance
+(image-level pipeline).
+Additionally, we extend the pipeline by incorporating an object detection model, YOLO, in combination with the SIFT
+feature. Thisenablesustoidentifyobjectswithintheimagesthatexhibitasimilarappearance(object-levelsimilarity).
+Toillustratetheseamlessintegrationofdifferentvectorstores,weleveragethepowerofmultiplevectorstores,namely
+FAISSandQDRANT, within evadb. This demonstrates the ease with which you can utilize diverse vector stores to
+construct indexes, enhancing your similarity search experience.
+14.1 Start EVA server
+We are reusing the start server notebook for launching the EVA server.
+!wget -nc "https://raw.githubusercontent.com/georgia-tech-db/eva/master/tutorials/00-
+˓→start-eva-server.ipynb"
+%run00-start-eva-server.ipynb
+cursor = connect_to_server()
+nohup eva_server > eva.log 2>&1 &
+14.2 Download reddit dataset
+!wget -nc https://www.dropbox.com/scl/fo/fcj6ojmii0gw92zg3jb2s/h \?dl\=1\&rlkey \
+˓→=j3kj1ox4yn5fhonw06v0pn7r9 -O reddit-images.zip
+!unzip -o reddit-images.zip -d reddit-images
+File 'reddit-images.zip 'already there; not retrieving.
+Archive: reddit-images.zip
+warning: stripped absolute path spec from /
+mapname: conversion of failed
+extracting: reddit-images/g348_d7jgzgf.jpg
+extracting: reddit-images/g348_d7jphyc.jpg
+extracting: reddit-images/g348_d7ju7dq.jpg
+(continues on next page)
+51EVA DB
+(continued from previous page)
+extracting: reddit-images/g348_d7jhhs3.jpg
+extracting: reddit-images/g1074_d4n1lmn.jpg
+extracting: reddit-images/g1074_d4mxztt.jpg
+extracting: reddit-images/g1074_d4n60oy.jpg
+extracting: reddit-images/g1074_d4n6fgs.jpg
+extracting: reddit-images/g1190_cln9xzr.jpg
+extracting: reddit-images/g1190_cln97xm.jpg
+extracting: reddit-images/g1190_clna260.jpg
+extracting: reddit-images/g1190_clna2x2.jpg
+extracting: reddit-images/g1190_clna91w.jpg
+extracting: reddit-images/g1190_clnad42.jpg
+extracting: reddit-images/g1190_clnajd7.jpg
+extracting: reddit-images/g1190_clnapoy.jpg
+extracting: reddit-images/g1190_clnarjl.jpg
+extracting: reddit-images/g1190_clnavnu.jpg
+extracting: reddit-images/g1190_clnbalu.jpg
+extracting: reddit-images/g1190_clnbf07.jpg
+extracting: reddit-images/g1190_clnc4uy.jpg
+extracting: reddit-images/g1190_clncot0.jpg
+extracting: reddit-images/g1190_clndsnu.jpg
+extracting: reddit-images/g1190_clnce4b.jpg
+extracting: reddit-images/g1209_ct65pvl.jpg
+extracting: reddit-images/g1209_ct66erw.jpg
+extracting: reddit-images/g1209_ct67oqk.jpg
+extracting: reddit-images/g1209_ct6a0g5.jpg
+extracting: reddit-images/g1209_ct6bf1n.jpg
+extracting: reddit-images/g1418_cj3o1h6.jpg
+extracting: reddit-images/g1418_cj3om3h.jpg
+extracting: reddit-images/g1418_cj3qysz.jpg
+extracting: reddit-images/g1418_cj3r4gw.jpg
+extracting: reddit-images/g1418_cj3z7jw.jpg
+14.3 Load all images into evadb
+cursor.execute("DROP TABLE IF EXISTS reddit_dataset;")
+response = cursor.fetch_all()
+cursor.execute("LOAD IMAGE 'reddit-images/*.jpg 'INTO reddit_dataset;")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Number of loaded IMAGE: 34
+52 Chapter 14. Similarity search for motif miningEVA DB
+14.4 Register a SIFT FeatureExtractor
+It useskornialibrary to extract sift features for each image
+!pip install kornia --quiet
+cursor.execute("""CREATE UDF IF NOT EXISTS SiftFeatureExtractor
+IMPL '../eva/udfs/sift_feature_extractor.py '""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 UDF SiftFeatureExtractor successfully added to...
+# Keep track of which image gets the most votes
+from collections import Counter
+vote = Counter()
+14.5 Image-level similarity search pipeline.
+Thispipelinecreatesonevectorperimage. Next,weshouldbreakdownstepshowwebuildtheindexandsearchsimilar
+vectors using the index.
+#1. Create index for the entire image
+cursor.execute("""CREATE INDEX reddit_sift_image_index
+ON reddit_dataset (SiftFeatureExtractor(data))
+USING FAISS""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Index reddit_sift_image_index successfully add...
+#2. Search similar vectors
+cursor.execute("""SELECT name FROM reddit_dataset ORDER BY
+Similarity(
+SiftFeatureExtractor(Open( 'reddit-images/g1190_clna260.jpg ')),
+SiftFeatureExtractor(data)
+)
+LIMIT 5""")
+response = cursor.fetch_all()
+response.as_df()
+reddit_dataset.name
+0 reddit-images/g1190_clna260.jpg
+1 reddit-images/g1190_clndsnu.jpg
+2 reddit-images/g1190_clna91w.jpg
+3 reddit-images/g1190_clnc4uy.jpg
+4 reddit-images/g1190_cln97xm.jpg
+14.4. Register a SIFT FeatureExtractor 53EVA DB
+#3. Update votes
+res_df = response.as_df()
+foriinrange(len(res_df)):
+vote[res_df["reddit_dataset.name"][i]] += 1
+print(vote)
+Counter({ 'reddit-images/g1190_clna260.jpg ': 1, 'reddit-images/g1190_clndsnu.jpg ': 1,
+˓→'reddit-images/g1190_clna91w.jpg ': 1, 'reddit-images/g1190_clnc4uy.jpg ': 1, 'reddit-
+˓→images/g1190_cln97xm.jpg ': 1})
+14.6 Object-level similarity search pipeline.
+This pipeline detects objects within images and generates vectors exclusively from the cropped objects. The index is
+thenconstructedusingthesevectors. Toshowcasetheversatilityof evadb,weleverage Qdrantvectorstorespecifically
+for building this index. This demonstrates how seamlessly you can leverage different vector stores within evadb.
+14.6.1 1. Extract all the object using Yolofrom the images
+cursor.execute("""
+CREATE MATERIALIZED VIEW reddit_object_table (name, data, bboxes,labels)
+AS SELECT name, data, bboxes, labels FROM reddit_dataset
+JOIN LATERAL UNNEST(Yolo(data)) AS Obj(labels, bboxes, scores)""")
+response = cursor.fetch_all()
+response.as_df()
+Empty DataFrame
+Columns: []
+Index: []
+14.6.2 2. Build an index on the feature vectors of the extracted objects
+cursor.execute("""CREATE INDEX reddit_sift_object_index
+ON reddit_object_table (SiftFeatureExtractor(Crop(data, bboxes)))
+USING QDRANT""")
+response = cursor.fetch_all()
+response.as_df()
+0
+0 Index reddit_sift_object_index successfully ad...
+# Create a cropped images (We are actively working on features to allow
+# us to not do this outside SQL)
+cursor.execute("LOAD IMAGE 'reddit-images/g1190_clna260.jpg 'INTO reddit_search_image_
+˓→dataset")
+response = cursor.fetch_all()
+print(response.as_df())
+(continues on next page)
+54 Chapter 14. Similarity search for motif miningEVA DB
+(continued from previous page)
+cursor.execute("SELECT Yolo(data).bboxes FROM reddit_search_image_dataset")
+response = cursor.fetch_all()
+print(response.as_df())
+import cv2
+import pathlib
+res_df = response.as_df()
+bboxes = res_df["yolo.bboxes"][0]
+img = cv2.imread("reddit-images/g1190_clna260.jpg")
+pathlib.Path("reddit-images/search-object/").mkdir(parents= True, exist_ok= True)
+fori, bbox inenumerate(bboxes):
+xmin, ymin, xmax, ymax = bbox
+xmin, ymin, xmax, ymax = int(xmin), int(ymin), int(xmax), int(ymax)
+cropped_img = img[ymin:ymax, xmin:xmax]
+cv2.imwrite(f"reddit-images/search-object/search- {i}.jpg", cropped_img)
+0
+0 Number of loaded IMAGE: 1
+yolo.bboxes
+0 [[257.2467956542969, 256.8749084472656, 457.67...
+14.6.3 3. Retrieve using object-level similarity search
+#4.
+import os
+forpath inos.listdir("reddit-images/search-object/"):
+path = "reddit-images/search-object/" + path
+cursor.execute(f"""SELECT name FROM reddit_object_table ORDER BY
+Similarity(
+SiftFeatureExtractor(Open( '{path }')),
+SiftFeatureExtractor(data)
+)
+LIMIT 1""")
+response = cursor.fetch_all()
+res_df = response.as_df()
+foriinrange(len(res_df)):
+vote[res_df["reddit_object_table.name"][i]] += 0.5
+print(response.as_df())
+reddit_object_table.name
+0 reddit-images/g1190_cln9xzr.jpg
+reddit_object_table.name
+0 reddit-images/g1190_cln9xzr.jpg
+(continues on next page)
+14.6. Object-level similarity search pipeline. 55EVA DB
+(continued from previous page)
+reddit_object_table.name
+0 reddit-images/g348_d7jgzgf.jpg
+14.7 Combine the scores from image level and object level similarity
+to show similar images
+# !pip install matplotlib
+import matplotlib.pyplot as plt
+# Display top images
+vote_list = list(reversed(sorted([(path, count) forpath, count invote.items()],␣
+˓→key= lambdax: x[1])))
+img_list = [path forpath, _ invote_list]
+fig, ax = plt.subplots(nrows=1, ncols=6, figsize=[18,10])
+ax[0].imshow(cv2.imread("reddit-images/g1190_clna260.jpg"))
+ax[0].set_title("Search")
+foriinrange(5):
+axi = ax[i + 1]
+img = cv2.imread(img_list[i])
+axi.imshow(img)
+axi.set_title(f"Top- {i + 1 }")
+plt.show()
+../_readthedocs/jupyter_execute/11-similarity-search-for-motif-mining_26_0.png
+56 Chapter 14. Similarity search for motif miningCHAPTER
+FIFTEEN
+EVA QUERY LANGUAGE REFERENCE
+EVAQueryLanguage(EVAQL)isderivedfromSQL.Itistailoredforvideoanalytics. EVAQLallowsuserstoinvoke
+deep learning models in the form of user-defined functions (UDFs).
+HereisanexamplewherewefirstdefineaUDFwrappingaroundtheFastRCNNobjectdetectionmodel. Wethenissue
+a query with this function to detect objects.
+--- Create an user-defined function wrapping around FastRCNN ObjectDetector
+CREATEUDF IF NOT EXISTS FastRCNNObjectDetector
+INPUT(frame NDARRAY UINT8(3, ANYDIM, ANYDIM))
+OUTPUT(labels NDARRAY STR(ANYDIM), bboxes NDARRAY FLOAT32(ANYDIM, 4),
+scores NDARRAY FLOAT32(ANYDIM))
+TYPEClassification
+IMPL 'eva/udfs/fastrcnn_object_detector.py ';
+--- Use the function to retrieve frames that contain more than 3 cars
+SELECTidFROMMyVideo
+WHEREArrayCount(FastRCNNObjectDetector( data).label, 'car') > 3
+ORDER BY id;
+This page presents a list of all the EVAQL statements that you can leverage in your Jupyter Notebooks.
+15.1 LOAD
+15.1.1 LOAD VIDEO FROM FILESYSTEM
+LOADVIDEO 'test_video.mp4 'INTOMyVideo;
+•test_video.mp4 is the location of the video file in the filesystem on the client.
+•MyVideo is the name of the table in EVA where this video is loaded. Subsequent queries over the video must
+refer to this table name.
+When a video is loaded, there is no need to specify the schema for the video table. EVA automatically generates the
+following schema with two columns: idanddata, that correspond to the frame id and frame content (in Numpy
+format).
+57EVA DB
+15.1.2 LOAD VIDEO FROM S3
+LOADVIDEO 's3://bucket/dummy.avi 'INTOMyVideo;
+LOADVIDEO 's3://bucket/eva_videos/*.mp4 'INTOMyVideos;
+The videos are downloaded to a directory that can be configured in the EVA configuration file under stor-
+age:s3_download_dir . The default directory is ~/.eva/s3_downloads .
+15.1.3 LOAD CSV
+ToLOADa CSV file, we need to first specify the table schema.
+CREATE TABLE IF NOT EXISTS MyCSV (
+idINTEGER UNIQUE ,
+frame_id INTEGER,
+video_id INTEGER,
+dataset_name TEXT(30),
+label TEXT(30),
+bbox NDARRAY FLOAT32(4),
+object_id INTEGER
+);
+LOADCSV 'test_metadata.csv 'INTOMyCSV;
+•test_metadata.csv needs to be loaded onto the server using LOADstatement.
+•The CSV file may contain additional columns. EVA will only load the columns listed in the defined schema.
+15.2 SELECT
+15.2.1 SELECT FRAMES WITH PREDICATES
+Search for frames with a car
+SELECTid, frame
+FROMMyVideo
+WHERE['car'] <@ FastRCNNObjectDetector(frame).labels
+ORDER BY id;
+Search frames with a pedestrian and a car
+SELECTid, frame
+FROMMyVideo
+WHERE['pedestrian ','car'] <@ FastRCNNObjectDetector(frame).labels;
+Search for frames containing greater than 3 cars
+SELECTidFROMMyVideo
+WHEREArrayCount(FastRCNNObjectDetector( data).label, 'car') > 3
+ORDER BY id;
+58 Chapter 15. EVA Query Language ReferenceEVA DB
+15.2.2 SELECT WITH MULTIPLE UDFS
+Compose multiple user-defined functions in a single query to construct semantically complex queries.
+SELECTid, bbox, EmotionDetector(Crop( data, bbox))
+FROMHAPPY JOIN LATERAL UNNEST (FaceDetector( data))ASFace(bbox, conf)
+WHEREid < 15;
+15.3 EXPLAIN
+15.3.1 EXPLAIN QUERY
+List the query plan associated with a EVAQL query
+AppendEXPLAIN in front of the query to retrieve the plan.
+EXPLAIN SELECT CLASS FROM TAIPAI;
+15.4 SHOW
+15.4.1 SHOW UDFS
+List the registered user-defined functions
+SHOWUDFS;
+15.5 CREATE
+15.5.1 CREATE TABLE
+To create a table, specify the schema of the table.
+CREATE TABLE IF NOT EXISTS MyCSV (
+idINTEGER UNIQUE ,
+frame_id INTEGER,
+video_id INTEGER,
+dataset_name TEXT(30),
+label TEXT(30),
+bbox NDARRAY FLOAT32(4),
+object_id INTEGER
+);
+15.3. EXPLAIN 59EVA DB
+15.5.2 CREATE UDF
+To register an user-defined function, specify the implementation details of the UDF.
+CREATEUDF IF NOT EXISTS FastRCNNObjectDetector
+INPUT(frame NDARRAY UINT8(3, ANYDIM, ANYDIM))
+OUTPUT(labels NDARRAY STR(ANYDIM), bboxes NDARRAY FLOAT32(ANYDIM, 4),
+scores NDARRAY FLOAT32(ANYDIM))
+TYPEClassification
+IMPL 'eva/udfs/fastrcnn_object_detector.py ';
+15.5.3 CREATE MATERIALIZED VIEW
+To create a view with materialized results – like the outputs of deep learning model, use the following template:
+CREATEMATERIALIZED VIEWUADETRAC_FastRCNN (id, labels) AS
+SELECTid, FastRCNNObjectDetector(frame).labels
+FROMUADETRAC
+WHEREid<5;
+15.6 DROP
+15.6.1 DROP TABLE
+DROP TABLE DETRACVideo;
+15.6.2 DROP UDF
+DROPUDF FastRCNNObjectDetector;
+15.7 INSERT
+15.7.1 TABLE MyVideo
+MyVideo Table schema
+CREATE TABLE MyVideo
+(id INTEGER,
+dataNDARRAY FLOAT32(ANYDIM));
+60 Chapter 15. EVA Query Language ReferenceEVA DB
+15.7.2 INSERT INTO TABLE
+Insert a tuple into a table.
+INSERT INTO MyVideo (id, data) VALUES
+(1,
+[[[40, 40, 40] , [40, 40, 40]],
+[[40, 40, 40] , [40, 40, 40]]]);
+15.8 DELETE
+15.8.1 DELETE INTO TABLE
+Delete a tuple from a table based on a predicate.
+DELETE FROM MyVideo WHEREid<10;
+15.9 RENAME
+15.9.1 RENAME TABLE
+RENAME TABLE MyVideo TOMyVideo1;
+15.8. DELETE 61EVA DB
+62 Chapter 15. EVA Query Language ReferenceCHAPTER
+SIXTEEN
+USER-DEFINED FUNCTIONS
+Thissectionprovidesanoverviewofhowyoucancreateanduseacustomuser-definedfunction(UDF)inyourqueries.
+For example, you could write an UDF that wraps around your custom PyTorch model.
+16.1 Part 1: Writing a custom UDF
+During each step, use this UDF implementation as a reference.
+1. Create a new file under udfs/folder and give it a descriptive name. eg: yolo_object_detection.py .
+Note:UDFs packaged along with EVA are located inside the udfs folder.
+2. Create a Python class that inherits from PytorchClassifierAbstractUDF .
+•ThePytorchClassifierAbstractUDF is a parent class that defines and implements standard methods for model
+inference.
+•Thefunctionssetupandforwardshouldbeimplementedinyourchildclass. Thesefunctionscanbeimplemented
+with the help of Decorators.
+16.2 Setup
+An abstract method that must be implemented in your child class. The setup function can be used to initialize the
+parameters for executing the UDF. The parameters that need to be set are
+•cacheable: bool
+–True: Cache should be enabled. Cache will be automatically invalidated when the UDF changes.
+–False: cache should not be enabled.
+•udf_type: str
+–object_detection: UDFs for object detection.
+•batchable: bool
+–True: Batching should be enabled
+–False: Batching is disabled.
+63EVA DB
+The custom setup operations for the UDF can be written inside the function in the child class. If there is no need for
+any custom logic, then you can just simply write “pass” in the function definition.
+Example of a Setup function
+@setup(cacheable= True, udf_type="object_detection", batchable= True)
+defsetup(self, threshold=0.85):
+#custom setup function that is specific for the UDF
+self.threshold = threshold
+self.model = torch.hub.load("ultralytics/yolov5", "yolov5s", verbose= False)
+16.3 Forward
+An abstract method that must be implemented in your UDF. The forward function receives the frames and runs the
+deep learning model on the data. The logic for transforming the frames and running the models must be provided by
+you. The arguments that need to be passed are
+•input_signatures: List[IOColumnArgument]
+Datatypesoftheinputstotheforwardfunctionmustbespecified. Ifnoconstraintsaregiven,thennovalidation
+is done for the inputs.
+•output_signatures: List[IOColumnArgument]
+Datatypesoftheoutputstotheforwardfunctionmustbespecified. Ifnoconstraintsaregiven,thennovalidation
+is done for the inputs.
+A sample forward function is given below
+@forward (
+input_signatures=[
+PyTorchTensor(
+name="input_col",
+is_nullable= False,
+type=NdArrayType.FLOAT32,
+dimensions=(1, 3, 540, 960),
+)
+],
+output_signatures=[
+PandasDataframe(
+columns=["labels", "bboxes", "scores"],
+column_types=[
+NdArrayType.STR,
+NdArrayType.FLOAT32,
+NdArrayType.FLOAT32,
+],
+column_shapes=[( None,), ( None,), ( None,)],
+)
+],
+)
+defforward(self, frames: Tensor) -> pd.DataFrame:
+#the custom logic for the UDF
+outcome = []
+(continues on next page)
+64 Chapter 16. User-Defined FunctionsEVA DB
+(continued from previous page)
+frames = torch.permute(frames, (0, 2, 3, 1))
+predictions = self.model([its.cpu().detach().numpy() * 255 forits inframes])
+foriinrange(frames.shape[0]):
+single_result = predictions.pandas().xyxy[i]
+pred_class = single_result["name"].tolist()
+pred_score = single_result["confidence"].tolist()
+pred_boxes = single_result[["xmin", "ymin", "xmax", "ymax"]].apply(
+lambdax: list(x), axis=1
+)
+outcome.append(
+{"labels": pred_class, "bboxes": pred_boxes, "scores": pred_score}
+)
+returnpd.DataFrame(outcome, columns=["labels", "bboxes", "scores"])
+16.4 Part 2: Registering and using the UDF in EVA Queries
+Now that you have implemented your UDF, we need to register it as a UDF in EVA. You can then use the UDF in any
+query.
+1. Register the UDF with a query that follows this template:
+CREATE UDF [ IF NOT EXISTS ] <name> IMPL <path_to_implementation>;
+where,
+•<name> - specifies the unique identifier for the UDF.
+•<path_to_implementation> - specifies the path to the implementation class for the UDF
+Here, is an example query that registers a UDF that wraps around the ‘YoloObjectDetection’ model that
+performs Object Detection.
+CREATEUDF YoloDecorators
+IMPL 'eva/udfs/decorators/yolo_object_detection_decorators.py ';
+A status of 0 in the response denotes the successful registration of this UDF.
+2. Now you can execute your UDF on any video:
+SELECTYoloDecorators( data)FROMMyVideo WHEREid < 5;
+3. You can drop the UDF when you no longer need it.
+DROPUDF IF EXISTS YoloDecorators;
+16.4. Part 2: Registering and using the UDF in EVA Queries 65EVA DB
+16.5 Ultralytics Models
+This section provides an overview of how you can use out-of-the-box Ultralytics models in EVA.
+16.5.1 Creating YOLO Model
+To create a YOLO UDF in EVA using Ultralytics models, use the following SQL command:
+CREATEUDF IF NOT EXISTS Yolo
+TYPEultralytics
+'model ' 'yolov8m.pt '
+You can change the modelvalue to specify any other model supported by Ultralytics.
+16.5.2 Supported Models
+The following models are currently supported by Ultralytics in EVA:
+•yolov8n.pt
+•yolov8s.pt
+•yolov8m.pt
+•yolov8l.pt
+•yolov8x.pt
+Please refer to the Ultralytics documentation for more information about these models and their capabilities.
+16.5.3 Using Ultralytics Models with Other UDFs
+This code block demonstrates how the YOLO model can be combined with other models such as Color and Dog-
+BreedClassifier to perform more specific and targeted object detection tasks. In this case, the goal is to find images of
+black-colored Great Danes.
+ThefirstqueryusesYOLOtodetectallimagesofdogswithblackcolor. The UNNESTfunctionisusedtosplittheoutput
+of theYoloUDF into individual rows, one for each object detected in the image. The ColorUDF is then applied to
+thecroppedportionoftheimagetoidentifythecolorofeachdetecteddogobject. The WHEREclausefilterstheresults
+to only include objects labeled as “dog” and with a color of “black”.
+SELECTid, bbox FROMdogs
+JOIN LATERAL UNNEST (Yolo( data))ASObj(label, bbox, score)
+WHEREObj.label = 'dog'
+ANDColor(Crop( data, bbox)) = 'black ';
+The second query builds upon the first by further filtering the results to only include images of Great Danes. The
+DogBreedClassifier UDF is used to classify the cropped portion of the image as a Great Dane. The WHEREclause
+adds an additional condition to filter the results to only include objects labeled as “dog”, with a color of “black”, and
+classified as a “great dane”.
+SELECTid, bbox FROMdogs
+JOIN LATERAL UNNEST (Yolo( data))ASObj(label, bbox, score)
+WHEREObj.label = 'dog'
+(continues on next page)
+66 Chapter 16. User-Defined FunctionsEVA DB
+(continued from previous page)
+ANDDogBreedClassifier(Crop( data, bbox)) = 'great dane '
+ANDColor(Crop( data, bbox)) = 'black ';
+16.6 HuggingFace Models
+This section provides an overview of how you can use out-of-the-box HuggingFace models in EVA.
+16.6.1 Creating UDF from HuggingFace
+EVA supports UDFS similar to Pipelines in HuggingFace.
+CREATEUDF IF NOT EXISTS HFObjectDetector
+TYPEHuggingFace
+'task ' 'object-detection '
+'model ' 'facebook / detr-resnet-50 '
+EVA supports all arguments supported by HF pipelines. You can pass those using a key value format similar to task
+and model above.
+16.6.2 Supported Tasks
+EVA supports the following tasks from huggingface:
+•Audio Classification
+•Automatic Speech Recognition
+•Text Classification
+•Summarization
+•Text2Text Generation
+•Text Generation
+•Image Classification
+•Image Segmentation
+•Image-to-Text
+•Object Detection
+•Depth Estimation
+16.6. HuggingFace Models 67EVA DB
+16.7 OpenAI Models
+This section provides an overview of how you can use OpenAI models in EVA.
+16.7.1 Chat Completion UDFs
+To create a chat completion UDF in EVA, use the following SQL command:
+CREATEUDF IF NOT EXISTS OpenAIChatCompletion
+IMPL 'eva/udfs/openai_chat_completion_udf.py '
+'model ' 'gpt-3.5-turbo '
+EVA supports the following models for chat completion task:
+•“gpt-4”
+•“gpt-4-0314”
+•“gpt-4-32k”
+•“gpt-4-32k-0314”
+•“gpt-3.5-turbo”
+•“gpt-3.5-turbo-0301”
+ThechatcompletionUDFcanbecomposedininterestingwayswithotherUDFs. PleaserefertotheChatGPTnotebook
+for an example of combining chat completion task with caption extraction and video summarization models from
+Hugging Face and feeding it to chat completion to ask questions about the results.
+16.8 User-Defined Functions
+Thissectionprovidesanoverviewofhowyoucancreateanduseacustomuser-definedfunction(UDF)inyourqueries.
+For example, you could write a UDF that wraps around a PyTorch model.
+16.8.1 Part 1: Writing a Custom UDF
+During each step, use the UDF implementation as a reference.
+1. Create a new file under udfs/folder and give it a descriptive name, e.g., fastrcnn_object_detector.py .
+Note:UDFs packaged along with EVA are located inside the udfs folder.
+2. Create a Python class that inherits from PytorchClassifierAbstractUDF .
+•ThePytorchClassifierAbstractUDF is a parent class that defines and implements standard methods
+for model inference.
+•Implement the setupandforward functions in your child class. These functions can be implemented
+with the help of decorators.
+68 Chapter 16. User-Defined FunctionsEVA DB
+16.8.2 Setup
+An abstract method that must be implemented in your child class. The setupfunction can be used to initialize the
+parameters for executing the UDF. The following parameters must be set:
+•cacheable : bool
+–True: Cache should be enabled. The cache will be automatically invalidated when the UDF changes.
+–False: Cache should not be enabled.
+•udf_type : str
+–object_detection : UDFs for object detection.
+•batchable : bool
+–True: Batching should be enabled.
+–False: Batching is disabled.
+The custom setup operations for the UDF can be written inside the function in the child class. If no custom logic is
+required, then you can just write passin the function definition.
+Example of the setupfunction:
+@setup(cacheable= True, udf_type="object_detection", batchable= True)
+defsetup(self, threshold=0.85):
+self.threshold = threshold
+self.model = torchvision.models.detection.fasterrcnn_resnet50_fpn(
+weights="COCO_V1", progress= False
+)
+self.model.eval()
+In this instance, we have configured the cacheable andbatchable attributes to True. As a result, EVA will cache the
+UDF outputs and utilize batch processing for increased efficiency.
+16.8.3 Forward
+Anabstractmethodthatmustbeimplementedinyourchildclass. The forwardfunctionreceivestheframesandrunsthe
+Deep Learning model on the frames. The logic for transforming the frames and running the models must be provided
+by you. The arguments that need to be passed are:
+•input_signatures : List[IOColumnArgument]
+Data types of the inputs to the forwardfunction must be specified. If no constraints are given, no validation is
+done for the inputs.
+•output_signatures : List[IOColumnArgument]
+Datatypesoftheoutputsfromthe forwardfunctionmustbespecified. Ifnoconstraintsaregiven,novalidation
+is done for the inputs.
+A sample forward function is given below:
+@forward (
+input_signatures=[
+PyTorchTensor(
+name="input_col",
+is_nullable= False,
+(continues on next page)
+16.8. User-Defined Functions 69EVA DB
+(continued from previous page)
+type=NdArrayType.FLOAT32,
+dimensions=(1, 3, 540, 960),
+)
+],
+output_signatures=[
+PandasDataframe(
+columns=["labels", "bboxes", "scores"],
+column_types=[
+NdArrayType.STR,
+NdArrayType.FLOAT32,
+NdArrayType.FLOAT32,
+],
+column_shapes=[( None,), ( None,), ( None,)],
+)
+],
+)
+defforward(self, frames: Tensor) -> pd.DataFrame:
+predictions = self.model(frames)
+outcome = []
+forprediction inpredictions:
+pred_class = [
+str(self.labels[i]) foriinlist(self.as_numpy(prediction["labels"]))
+]
+pred_boxes = [
+[i[0], i[1], i[2], i[3]]
+foriinlist(self.as_numpy(prediction["boxes"]))
+]
+In this instance, the forward function takes a PyTorch tensor of Float32 type with a shape of (1, 3, 540, 960) as input.
+The resulting output is a pandas dataframe with 3 columns, namely “labels”, “bboxes”, and “scores”, and of string,
+float32, and float32 types respectively.
+16.8.4 Part 2: Registering and using the UDF in queries
+Now that you have implemented your UDF we need to register it in EVA. You can then use the function in any query.
+Register the UDF in EVA
+CREATEUDF [ IF NOT EXISTS ] <name>
+IMPL <implementation_path>;
+name- specifies the unique identifier for the UDF.
+implementation_path - specifies the path to the implementation class for the UDF
+Here, is an example query that registers a UDF that wraps around the fasterrcnn_resnet50_fpn model that per-
+forms Object Detection.
+CREATEUDF FastRCNNObjectDetector
+IMPL 'eva/udfs/fastrcnn_object_detector.py ';
+70 Chapter 16. User-Defined FunctionsEVA DB
+Call registered UDF in a query
+SELECTFastRCNNObjectDetector( data)FROMMyVideo WHEREid < 5;
+Drop the UDF
+DROPUDF IF EXISTS FastRCNNObjectDetector;
+16.8. User-Defined Functions 71EVA DB
+72 Chapter 16. User-Defined FunctionsCHAPTER
+SEVENTEEN
+IO DESCRIPTORS
+EVA supports three key data types. The inputs and outputs of the user-defined functions (UDFs) must be of one of
+these types.
+17.1 NumpyArray
+Used when the inputs or outputs of the UDF is of type Numpy Array.
+17.2 Parameters
+name (str): name of the numpy array.
+is_nullable ( bool): boolean value indicating if the numpy array can be NULL.
+type (NdArrayType ): data type of all the elements in the numpy array. The available types can be found in
+eva/catalog/catalog_type.py in the class NdArrayType
+dimensions( Tuple(int) ): shape of the numpy array
+from eva.catalog.catalog_type import NdArrayType
+NumpyArray(
+name="input_arr",
+is_nullable= False,
+type=NdArrayType.INT32,
+dimensions=(2, 2),
+)
+17.3 PyTorchTensor
+name (str): name of the pytorch tensor.
+is_nullable ( bool): boolean value indicating if the pytorch tensor can be NULL.
+type (NdArrayType ): data type of elements in the pytorch tensor. The available types can be found in
+eva/catalog/catalog_type.py in class NdArrayType
+dimensions( Tuple(int) ): shape of the numpy array
+73EVA DB
+from eva.catalog.catalog_type import NdArrayType
+PyTorchTensor(
+name="input_arr",
+is_nullable= False,
+type=NdArrayType.INT32,
+dimensions=(2, 2),
+)
+17.4 PandasDataframe
+columns ( List[str]): list of strings that represent the expected column names in the pandas dataframe that is returned
+from the UDF.
+column_types ( NdArrayType ): expected datatype of the column in the pandas dataframe returned from the UDF. The
+NdArrayType class is inherited from eva.catalog.catalog_type.
+column_shapes ( List[tuples] ): list of tuples that represent the expected shapes of columns in the pandas dataframe
+returned from the UDF.
+PandasDataframe(
+columns=["labels", "bboxes", "scores"],
+column_types=[
+NdArrayType.STR,
+NdArrayType.FLOAT32,
+NdArrayType.FLOAT32,
+],
+column_shapes=[( None,), ( None,), ( None,)],
+)
+74 Chapter 17. IO DescriptorsCHAPTER
+EIGHTEEN
+CONFIGURE GPU
+1. QueriesinEVAusedeeplearningmodelsthatrunmuchfasteronaGPUasopposedtoaCPU.Ifyourworkstation
+hasaGPU,youcanconfigureEVAtousetheGPUduringqueryexecution. Usethefollowingcommandtocheck
+your hardware capabilities:
+ubuntu-drivers devices
+nvidia-smi
+AvalidoutputfromthecommandindicatesthatyourGPUisconfiguredandreadytouse. Ifnot,youwillneedtoinstall
+the appropriate GPU driver. This page provides a step-by-step guide on installing and configuring the GPU driver in
+the Ubuntu Operating System.
+•When installing an NVIDIA driver, ensure that the version of the GPU driver is correct to avoid compatibility
+issues.
+•WheninstallingcuDNN,youwillneedtocreateanaccountandensurethatyougetthecorrect debfilesforyour
+operating system and architecture.
+2. You can run the following code in a Jupyter notebook to verify that your GPU is detected by PyTorch:
+import torch
+device = torch.device( 'cuda:0 'iftorch.cuda.is_available() else 'cpu')
+print(device)
+Output of cuda:0indicates the presence of a GPU. 0 indicates the index of the GPU in system. If you have multiple
+GPUs on your workstation, the index must be updated accordingly.
+3. Now configure the executor section in eva.yml as follows:
+executor :
+gpus: {'127.0.1.1 ': [0]}
+Here,127.0.1.1 is the loopback address on which the EVA server is running. 0 refers to the GPU index to be used.
+75EVA DB
+76 Chapter 18. Configure GPUCHAPTER
+NINETEEN
+EVA INTERNALS
+19.1 Path of a Query
+The following coderepresents a sequence of operations thatcan be used to execute aquery in a evaql database. found
+in eva/server/command_handler.py
+Parse the query using the Parser() function provided by the evaql library. The result of this step will be a
+parsed representation of the query in the form of an abstract syntax tree (AST).
+stmt = Parser().parse(query)[0]
+Bind the parsed AST to a statement context using the StatementBinder() function. This step resolves references to
+schema objects and performs other semantic checks on the query.
+StatementBinder(StatementBinderContext()).bind(stmt)
+ConverttheboundASTtoalogicalplanusingtheStatementToPlanConvertor()function. Thisstepgeneratesalogical
+plan that specifies the sequence of operations needed to execute the query.
+l_plan = StatementToPlanConvertor().visit(stmt)
+Generateaphysicalplanfromthelogicalplanusingtheplan_generator.build()function. Thisstepoptimizesthelogical
+plan and generates a physical plan that specifies how the query will be executed.
+p_plan = plan_generator.build(l_plan)
+ExecutethephysicalplanusingthePlanExecutor()function. Thisstepretrievesthedatafromthedatabaseandproduces
+the final output of the query.
+output = PlanExecutor(p_plan).execute_plan()
+Overall,thissequenceofoperationsrepresentsthepathofqueryexecutioninaevaqldatabase,fromparsingthequery
+to producing the final output.
+77EVA DB
+19.2 Topics
+19.2.1 Catalog
+Catalog Manager
+Explanation for developers on how to use the eva catalog_manager.
+CatalogManager class that provides a set of services to interact with a database that stores metadata about tables,
+columns,anduser-definedfunctions(UDFs). Informationlikewhatisthedatatypeinacertaincolumninatable,type
+of a table, its name, etc.. It contains functions to get, insert and delete catalog entries for Tables, UDFs, UDF IOs,
+Columns and Indexes.
+This data is stored in the eva_catalog.db file which can be found in ~/.eva/<version>/ folder.
+Catalog manager currently has 5 services in it:
+TableCatalogService()
+ColumnCatalogService()
+UdfCatalogService()
+UdfIOCatalogService()
+IndexCatalogService()
+Catalog Services
+This class provides functionality related to a table catalog, including inserting, getting, deleting, and renaming table
+entries, as well as retrieving all entries. e.g. the TableCatalogService contains code to get, insert and delete a table.
+Catalog Models
+These contain the data model that is used by the catalog services. Each model represents a table in the underlying
+database.
+78 Chapter 19. EVA InternalsCHAPTER
+TWENTY
+CONTRIBUTING
+We welcome all kinds of contributions to EVA.
+•Code reviews
+•Improving documentation
+•Tutorials and applications
+•New features
+20.1 Setting up the Development Environment
+First, you will need to checkout the repository from GitHub and build EVA from the source. Follow the following
+instructions to build EVA locally. We recommend using a virtual environment and the pip package manager.
+git clone https://github.com/georgia-tech-db/eva.git && cd eva
+python3 -m venv test_eva_db # create a virtual environment
+source test_eva_db/bin/activate # activate the virtual environment
+pip install --upgrade pip # upgrade pip
+pip install -e ".[dev]" # build and install the EVA package
+bash script/test/test.sh # run the eva EVA suite
+After installing the package locally, you can make changes and run the test cases to check their impact.
+pip install . # reinstall EVA package to include local changes
+pkill -9 eva_server # kill running EVA server (if any)
+eva_server& # launch EVA server with newly installed package
+20.2 Testing
+Check if your local changes broke any unit or integration tests by running the following script:
+bash script/test/test.sh
+If you want to run a specific test file, use the following command.
+python -m pytest test/integration_tests/test_select_executor.py
+Use the following command to run a specific test case within a specific test file.
+79EVA DB
+python -m pytest test/integration_tests/test_select_executor.py -k 'test_should_load_and_
+˓→select_in_table '
+20.3 Submitting a Contribution
+Follow the following steps to contribute to EVA:
+•Merge the most recent changes from the master branch
+git remote add origin git@github.com:georgia-tech-db/eva.git
+git pull . origin/master
+•Run thetest script to ensure that all the test cases pass.
+•If you are adding a new EVAQL command, add an illustrative example usage in the documentation.
+•Run the following command to ensure that code is properly formatted.
+python script/formatting/formatter.py
+20.4 Code Style
+We use the black code style for formatting the Python code. For docstrings and documentation, we use Google Pydoc
+format.
+deffunction_with_types_in_docstring(param1, param2) -> bool:
+"""Example function with types documented in the docstring.
+Additional explanatory text can be added in paragraphs.
+Args:
+param1 (int): The first parameter.
+param2 (str): The second parameter.
+Returns:
+bool: The return value. True for success, False otherwise.
+20.5 Debugging
+We recommend using Visual Studio Code with a debugger for developing EVA. Here are the steps for setting up the
+development environment:
+1. Install the Python extension in Visual Studio Code.
+2. Install the Python Test Explorer extension.
+3. Follow these instructions to run a particular test case from the file: Getting started.
+80 Chapter 20. ContributingEVA DB
+20.5. Debugging 81EVA DB
+20.6 Architecture Diagram
+20.7 Troubleshooting
+If the test suite fails with a PermissionDenied exception, update the path_prefix attribute under the storagesection in
+the EVA configuration file ( ~/.eva/eva.yml ) to a directory where you have write privileges.
+82 Chapter 20. ContributingCHAPTER
+TWENTYONE
+DEBUGGING
+WerecommendVisualStudioCodewithadebuggerfordebuggingEVA.Thistutorialpresentsadetailedstep-by-step
+process of using the debugger.
+21.1 Setup debugger
+1. Install the Python extension in Visual Studio Code.
+2. Install the Python Test Explorer extension.
+3. Follow these instructions to run a particular test case from the file: Getting started.
+83EVA DB
+21.2 Alternative: Manually Setup Debugger for EVA
+When you press the debug icon, you will be given an option to create a launch.json file.
+WhilecreatingtheJSONfile,youwillbepromptedtoselecttheenvironmenttobeused. Selectthepythonenvironment
+fromthecommand palette atthetop. IfthePythonenvironmentcannotbeseeninthedrop-downmenu,tryinstalling
+the python extension, and repeat the process.
+Once you select the python environment, a launch.json file will be created with the default configurations set to
+debug a simple .py file.
+More configurations can further be added to the file, to modify the environment variables or to debug an entire folder
+or workspace directory. Use the following configuration in the JSON file:
+{
+"version" : "0.2.0",
+"configurations" : [
+{
+"name": "Python: test_pytorch.py",
+"type": "python",
+"request" : "launch",
+"program" : "${workspaceFolder}/test/integration_tests/test_pytorch.py",
+"console" : "integratedTerminal",
+"cwd": "${workspaceFolder}",
+"env": {"PYTHONPATH" : "${workspaceRoot}"}
+(continues on next page)
+84 Chapter 21. DebuggingEVA DB
+(continued from previous page)
+}
+]
+}
+You can modify the fields of the above JSON file as follows:
+name: It is the reader-friendly name to appear in the Debug launch configuration dropdown.
+type: The type of debugger to use for this launch configuration.
+program: The executable or file to run when launching the debugger. In the above example,
+test_integration.py will be executed by the debugger.
+env: Hereyouspecifytheenvironmentvariables. Intheaboveexample,thepathforthecondaenvironment
+for Eva has been specified.
+Using these configuration variables, you can run the debugger both locally as well as on a remote server.
+21.2. Alternative: Manually Setup Debugger for EVA 85EVA DB
+86 Chapter 21. DebuggingCHAPTER
+TWENTYTWO
+EXTENDING EVA
+Thisdocumentdetailsthestepsinvolvedinaddingsupportforanewoperator(orcommand)inEVA.Weillustratethe
+process using a DDL command.
+22.1 Command Handler
+An input query string is handled by Parser,StatementTOPlanConverter ,PlanGenerator , andPlanExecutor . We
+discuss each part separately.
+defexecute_query(query) -> Iterator[Batch]:
+"""
+Execute the query and return a result generator.
+"""
+#1. parser
+stmt = Parser().parse(query)[0]
+#2. statement to logical plan
+l_plan = StatementToPlanConverter().visit(stmt)
+#3. logical to physical plan
+p_plan = PlanGenerator().build(l_plan)
+#4. parser
+returnPlanExecutor(p_plan).execute_plan()
+22.2 1. Parser
+The parser firstly generate syntax tree from the input string, and then transform syntax tree into statement .
+The first part of Parser is build from a LARK grammar file.
+22.2.1 parser/eva
+•eva.lark - add keywords(eg. CREATE, TABLE) under Common Keywords
+–Add new grammar rule (eg. create_table)
+–Write a new grammar, for example:
+create_table: CREATE TABLE if_not_exists? table_name create_definitions
+The second part of parser is implemented as parser visitor .
+87EVA DB
+22.2.2 parser/lark_visitor
+•_[cmd]_statement.py - eg. class CreateTable(evaql_parserVisitor)
+–Write functions to transform each input data from syntax tree to desired type. (eg. transform Column
+information into a list of ColumnDefinition)
+–Write a function to construct [cmd]Statement and return it.
+•__init__.py - import_[cmd]_statement.py and add its class to ParserVisitor ’s parent class.
+from src.parser.parser_visitor._create_statement import CreateTable
+class ParserVisitor (CommonClauses, CreateTable, Expressions,
+Functions, Insert, Select, TableSources,
+Load, Upload):
+22.2.3 parser/
+•[cmd]_statement.py - class [cmd]Statement. Its constructor is called in _[cmd]_statement.py
+•types.py - register new StatementType
+22.3 2. Statement To Plan Converter
+The part transforms the statement into corresponding logical plan.
+22.3.1 Optimizer
+•operators.py
+–Define class Logical[cmd], which is the logical node for the specific type of command.
+class LogicalCreate (Operator):
+def__init__(self, video: TableRef, column_list: List[DataFrameColumn], if_not_
+˓→exists: bool = False, children= None):
+super().__init__(OperatorType.LOGICALCREATE, children)
+self._video = video
+self._column_list = column_list
+self._if_not_exists = if_not_exists
+# ...
+–Register new operator type to class OperatorType , Notice that must add it before LOGICALDELIM-
+ITER!!!
+•statement_to_opr_convertor.py
+–import resource
+from src.optimizer.operators import LogicalCreate
+from src.parser.rename_statement import CreateTableStatement
+–implement visit_[cmd]() function, which converts statement to operator
+88 Chapter 22. Extending EVAEVA DB
+# May need to convert the statement into another data type.
+# The new data type is usable for executing command.
+# For example, column_list -> column_metadata_list
+defvisit_create(self, statement: AbstractStatement):
+video_ref = statement.table_ref
+ifvideo_ref is None:
+LoggingManager().log("Missing Table Name In Create Statement",
+LoggingLevel.ERROR)
+if_not_exists = statement.if_not_exists
+column_metadata_list = create_column_metadata(statement.column_list)
+create_opr = LogicalCreate(
+video_ref, column_metadata_list, if_not_exists)
+self._plan = create_opr
+–modify visit function to call the right visit_[cmd] function
+defvisit(self, statement: AbstractStatement):
+ifisinstance(statement, SelectStatement):
+self.visit_select(statement)
+#...
+elifisinstance(statement, CreateTableStatement):
+self.visit_create(statement)
+returnself._plan
+22.4 3. Plan Generator
+Theparttransformedlogicalplantophysicalplan. Themodifiedfilesarestoredunder Optimizer andPlannerfolders.
+22.4.1 plan_nodes/
+•[cmd]_plan.py - class [cmd]Plan, which stored information required for rename table.
+class CreatePlan (AbstractPlan):
+def__init__(self, video_ref: TableRef,
+column_list: List[DataFrameColumn],
+if_not_exists: bool = False):
+super().__init__(PlanOprType.CREATE)
+self._video_ref = video_ref
+self._column_list = column_list
+self._if_not_exists = if_not_exists
+#...
+•types.py - register new plan operator type to PlanOprType
+22.4. 3. Plan Generator 89EVA DB
+22.4.2 optimizer/rules
+•rules.py -
+–Import operators
+–Register new ruletype to RuleType andPromise (place itbefore IMPLEMENTATION_DELIMITER
+!!)
+–implement class Logical[cmd]ToPhysical , its member function apply() will construct a correspond-
+ing[cmd]Plan object.
+class LogicalCreateToPhysical (Rule):
+def__init__(self):
+pattern = Pattern(OperatorType.LOGICALCREATE)
+super().__init__(RuleType.LOGICAL_CREATE_TO_PHYSICAL, pattern)
+defpromise(self):
+returnPromise.LOGICAL_CREATE_TO_PHYSICAL
+defcheck(self, before: Operator, context: OptimizerContext):
+return True
+defapply(self, before: LogicalCreate, context: OptimizerContext):
+after = CreatePlan(before.video, before.column_list, before.if_not_exists)
+returnafter
+•rules_base.py -
+–Register new ruletype to RuleType andPromise (place itbefore IMPLEMENTATION_DELIMITER
+!!)
+•rules_manager.py -
+–Import rules created in rules.py
+–Add imported logical to physical rules to self._implementation_rules
+22.5 4. Plan Executor
+PlanExecutor uses data stored in physical plan to run the command.
+22.5.1 executor/
+•[cmd]_executor.py - implement an executor that make changes in catalog,metadata , orstorage engine to
+run the command.
+–May need to create helper function in CatalogManager, DatasetService, DataFrameMetadata, etc.
+class CreateExecutor (AbstractExecutor):
+defexec(self):
+if(self.node.if_not_exists):
+# check catalog if we already have this table
+return
+(continues on next page)
+90 Chapter 22. Extending EVAEVA DB
+(continued from previous page)
+table_name = self.node.video_ref.table_info.table_name
+file_url = str(generate_file_path(table_name))
+metadata = CatalogManager().create_metadata(table_name, file_url, self.node.
+˓→column_list)
+StorageEngine.create(table=metadata)
+22.6 Additional Notes
+Key data structures in EVA:
+•Catalog: Records DataFrameMetadata for all tables.
+–data stored in DataFrameMetadata: name,file_url ,identifier_id ,schema
+∗file_url - used to access the real table in storage engine.
+–FortheRENAMEtablecommand,weusethe old_table_name toaccessthecorrespondingentryinmetadata
+table, and the modified name of the table.
+•Storage Engine :
+–API is defined in src/storage , currently only supports create, read, write.
+22.6. Additional Notes 91EVA DB
+92 Chapter 22. Extending EVACHAPTER
+TWENTYTHREE
+EVA RELEASE GUIDE
+23.1 Part 1: Before You Start
+MakesureyouhavePyPIaccountwithmaintaineraccesstotheEVAproject. Createa.pypircinyourhomedirectory.
+It should look like this:
+[distutils]
+index-servers =
+pypi
+pypitest
+[pypi]
+username=YOUR_USERNAME
+password=YOUR_PASSWORD
+Then runchmod 600 ./.pypirc so that only you can read/write the file.
+23.2 Part 2: Release Steps
+1. Ensure that you’re in the top-level evadirectory.
+2. Ensure that your branch is in sync with the masterbranch:
+$ git pull origin master
+3. Add a new entry in the Changelog for the release.
+## [0.0.6]
+### [Breaking Changes]
+### [Added]
+### [Changed]
+### [Deprecated]
+### [Removed]
+Make sure CHANGELOG.md is up to date for the release: compare against PRs merged since the last release.
+4. Update version to, e.g. 0.0.6(remove the +devlabel) ineva/version.py .
+5. Commit these changes and create a PR:
+93EVA DB
+git checkout -b release-v0.0.6
+git add . -u
+git commit -m "[RELEASE]: v0.0.6"
+git push --set-upstream origin release-v0.0.6
+6. Once the PR is approved, merge it and pull master locally.
+7. Tag the release:
+git tag -a v0.0.6 -m "v0.0.6 release"
+git push origin v0.0.6
+8. Build the source and wheel distributions:
+rm -rf dist build # clean old builds & distributions
+python3 setup.py sdist # create a source distribution
+python3 setup.py bdist_wheel # create a universal wheel
+9. Check that everything looks correct by installing the wheel locally and checking the version:
+python3 -m venv test_evadb # create a virtualenv for testing
+source test_evadb/bin/activate # activate virtualenv
+python3 -m pip install dist/evadb-0.9.1-py3-none-any.whl
+python3 -c "import eva; print(eva.__version__)"
+10. Publish to PyPI
+pip install twine # if not installed
+twine upload dist/* -r pypi
+11. APRisautomaticallysubmitted(thiswilltakeafewhours)on[ conda-forge/eva-feedstock ](https://github.com/
+conda-forge/eva-feedstock) to update the version. * A maintainer needs to accept and merge those changes.
+12. Create a new release on Github. * Input the recently-created Tag Version: v0.0.6* Copy the release notes in
+CHANGELOG.md to the GitHub tag. * Attach the resulting binaries in ( dist/evadb-x.x.x.* ) to the release. *
+Publish the release.
+13. Update version to, e.g. 0.9.1+dev ineva/version.py .
+14. Add a new changelog entry for the unreleased version in CHANGELOG.md :
+## [Unreleased]
+### [Breaking Changes]
+### [Added]
+### [Changed]
+### [Deprecated]
+### [Removed]
+15. Commit these changes and create a PR:
+git checkout -b bump-v0.9.1+dev
+git add . -u
+git commit -m "[BUMP]: v0.9.1+dev"
+git push --set-upstream origin bump-v0.9.1+dev
+16. Add the new tag to the EVA project on ReadTheDocs,
+94 Chapter 23. EVA Release GuideEVA DB
+•Trigger a build for main to pull new tags.
+•Go to the Versions tab, andActivate the new tag.
+•Go to Admin/Advanced to set this tag as the new default version.
+•InOverview , make sure a build is triggered:
+–For the tag v0.9.1
+–Forlatest
+Credits: Snorkel
+23.2. Part 2: Release Steps 95EVA DB
+96 Chapter 23. EVA Release GuideCHAPTER
+TWENTYFOUR
+PACKAGING
+This section describes practices to follow when packaging your own models or datasets to be used along
+with EVA.
+24.1 Models
+Please follow the following steps to package models:
+•Createafolderwithadescriptivename. ThisfoldernamewillbeusedbytheUDFthatisinvokingyourmodel.
+•Place all files used by the UDF inside this folder. These are typically:
+–Model weights (The .pt files that contain the actual weights)
+–Model architectures (The .pt files that contain model architecture information)
+–Label files (Extra files that are used in the process of model inference for outputting labels.)
+–Other config files (Any other config files required for model inference)
+•Zip this folder.
+•Upload the zipped folder to this link inside the models folder.
+24.2 Datasets
+Please follow the following steps to package datasets:
+•Create a folder for your dataset and give it a descriptive name.
+•This dataset folder should contain 2 sub-folders named ‘info’ and ‘videos’. For each video entry in the videos
+folder, there should be a corresponding CSV file in the info folder with the same name. The structure should
+look like:
+97EVA DB
+•The videos folder should contain the raw videos in a standard format like mp4 or mov.
+•The info folder should contain the meta information corresponding to each video in CSV format. Each row of
+thisCSVfileshouldcorrespondto1uniqueobjectinagivenframe. PleasemakesurethecolumnsinyourCSV
+file exactly match to these names. Here is a snapshot of a sample CSV file:
+The columns represent the following:
+–id-(Integer)Autoincrementingindexthatisuniqueacrossallfiles(SincetheCSVfilesare
+written to the same meta table, we want it to be unique across all files)
+–frame_id - (Integer) id of the frame this row corresponds to.
+–video_id - (Integer) id of the video this file corresponds to.
+–dataset_name - (String) Name of the dataset (should match the folder name)
+–label - (String) label of the object this row corresponds to.
+–bbox-(String)commaseparatedfloatvaluesrepresentingx1,y1,x2,y2(topleftandbottom
+right) coordinates of the bounding box
+98 Chapter 24. PackagingEVA DB
+–object_id - (Integer) unique id for the object corresponding to this row.
+•Zip this folder.
+•Upload the zipped folder to this link inside the datasets folder.
+Note: Inthefuture,willprovideutilityscriptsalongwithEVAtodownloadmodelsanddatasetseasilyandplacethem
+in the appropriate locations.
+24.2. Datasets 99
